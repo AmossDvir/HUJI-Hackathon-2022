@@ -6,3 +6,7 @@ updates the db according to the files that makemigrations made
 
 python manage.py showmigrations
 shows the history of migrations and what's in already
+
+
+requirements:
+pip install django-cors-headers
