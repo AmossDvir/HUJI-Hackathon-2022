@@ -1,9 +1,9 @@
 import React from "react";
 
-const Route = () => {
+const Route = ({children}) => {
     return (
     <div>
-        
+        {children}
     </div>
     )
 };
