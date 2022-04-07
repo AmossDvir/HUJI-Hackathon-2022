@@ -2,6 +2,7 @@
 """Django's command-line utility for administrative tasks."""
 import os
 import sys
+import mysql.connector
 
 
 def main():
@@ -16,7 +17,12 @@ def main():
             "forget to activate a virtual environment?"
         ) from exc
     execute_from_command_line(sys.argv)
-
+    cnx = mysql.connector.connect(user='admin', password='easymed1212',
+                                host='hospitals.cco6ycb236ib.us-east-1.rds.amazonaws.com',
+                                database='hospitals')
+    # cnx.create_table()
+    cnx.close()
+    # import ipdb; ipdb.set_trace()
 
 if __name__ == '__main__':
     main()
