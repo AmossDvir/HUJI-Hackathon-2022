@@ -1,6 +1,3 @@
-from email.policy import default
-from statistics import multimode
-from tkinter import ALL
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from multiselectfield import MultiSelectField
@@ -42,3 +39,6 @@ class Hospital(models.Model):
     is_private = models.BooleanField()
     er_type = models.PositiveSmallIntegerField(choices=ER_TYPE.choices, default=ER_TYPE.HOS)
     care_fields = MultiSelectField(choices=CARE_CHOICES.choices, default=CARE_CHOICES.ALL)
+
+    # def __str__(self):
+    #     return self.name
