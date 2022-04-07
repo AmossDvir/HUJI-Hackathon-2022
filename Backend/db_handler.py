@@ -2,6 +2,7 @@ from math import sqrt, pow
 import functools
 from api.models import Hospital
 
+
 # d = {
 #     "name": "Augusta Victoria Hospital",
 #     "phone": " 026279902",
@@ -69,5 +70,5 @@ def get_district_choices():
 
 
 def cal_distance(n_loc, e_loc, other_n_loc, other_e_loc):
-    return sqrt(pow(n_loc - other_n_loc, 2) + pow(e_loc - other_e_loc, 2))
+    return sqrt(pow(n_loc - other_n_loc, 2) + pow(e_loc - other_e_loc, 2))/10000
 

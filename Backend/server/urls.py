@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path
 from django.urls import path, include
 from api.models import User, Hospital
+from api import views as api_views
 from rest_framework import routers, serializers, viewsets
 
 # Serializers define the API representation.
@@ -50,6 +51,11 @@ router.register(r'Hospital', HospitalViewSet)
 # Additionally, we include login URLs for the browsable API.
 urlpatterns = [
     path('', include(router.urls)),
+    path('by_params/', api_views.get_hospitals_by_parameters),
+    path('all_hospitals/', api_views.get_all_hospitals),
+    path('district_choice/', api_views.district_choices),
+    path('care_choice/', api_views.care_choices),
+    path('er_type/', api_views.er_type),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('admin/', admin.site.urls),
 ]
