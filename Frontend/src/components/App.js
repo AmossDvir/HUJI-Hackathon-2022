@@ -1,5 +1,5 @@
 import React from "react";
-import Login from "./Login";
+import HomePage from "./HomePage";
 import "./styling.css"
 import axios from 'axios';
 const App = () => {
@@ -11,7 +11,7 @@ const App = () => {
     
     return (
         <div>
-            {/* <Login></Login> */}
+            <HomePage></HomePage>
         </div>
     );
 }
