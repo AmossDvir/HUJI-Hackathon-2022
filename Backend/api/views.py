@@ -21,18 +21,61 @@ def get_all_hospitals(request):
     return JsonResponse(serializer.data, safe=False)
 
 
+# def get_hospitals_by_parameters(request):
+#     if request.method == "GET":
+#         param = request.GET.dict()
+#         north_loc = param["north"]
+#         east_loc = param["east"]
+#         # if param["filter"] == "radius" :
+#         #     hospitals =  db_handler.get_by_radius(north_loc= 31773465, east_loc=35196418, radius=2 )
+#         # if param["filter"] == "district":
+#         #     pass
+#         all_hos = db_handler.get_all()
+#         if param["radius"]:
+#             r_hos = db_handler.get_by_radius(north_loc, east_loc, param["radius"])
+#         else:
+#             r_hos = all_hos
+#         if not param["disrict"]:
+#             d_hos = db_handler.get_by_field("disrict",param["district"])
+#         else:
+#             d_hos = all_hos
+#         if not param["care"]:
+#             c_hos = db_handler.get_by_field("care",param["care"])
+#         else:
+#             c_hos = all_hos
+#         if not param["er"]:
+#             d_hos = db_handler.get_by_field("er",param["er"])
+#         else:
+#             d_hos = all_hos
+#         serializer = HospitalSerializer(hospitals, many=True)
+#         return JsonResponse(serializer.data, safe=False)
+#     return JsonResponse({'email': 'leila@example.com'}, safe=False)
+    
 def get_hospitals_by_parameters(request):
     if request.method == "GET":
         param = request.GET.dict()
-        if param["filter"] == "radius" :
-            hospitals =  db_handler.get_by_radius(north_loc= 31773465, east_loc=35196418, radius=2 )
-        if param["filter"] == "district" or param["filter"] == "er_type":
-            pass
-        serializer = HospitalSerializer(hospitals, many=True)
+        north_loc = param["north"]
+        east_loc = param["east"]
+        # if param["filter"] == "radius" :
+        #     hospitals =  db_handler.get_by_radius(north_loc= 31773465, east_loc=35196418, radius=2 )
+        # if param["filter"] == "distrisct":
+        #     pass
+        all_hos = db_handler.get_all()
+        if param["radius"]:
+            r_hos = db_handler.get_by_radius(north_loc, east_loc, param["radius"])
+            all_hos = list(set(all_hos) & set(r_hos))
+        if param["disrict"]:
+            d_hos = db_handler.get_by_field("disrict",param["district"])
+            all_hos = list(set(all_hos) & set(d_hos))
+        if not param["care"]:
+            c_hos = db_handler.get_by_field("care",param["care"])
+            all_hos = list(set(all_hos) & set(c_hos))
+        if not param["er"]:
+            e_hos = db_handler.get_by_field("er",param["er"])
+            all_hos = list(set(all_hos) & set(e_hos))
+        serializer = HospitalSerializer(all_hos, many=True)
         return JsonResponse(serializer.data, safe=False)
-    return JsonResponse({'email': 'leila@example.com'}, safe=False)
-    # hospitals = db_handler.get_by_radius()
-
+    return JsonResponse({'NOT A GET REQUEST'}, safe=False)
 
 def Convert(tup, di):
     """convert list of tuples to dic """
