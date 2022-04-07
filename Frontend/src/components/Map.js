@@ -2,7 +2,9 @@ import React from "react";
 
 const Map = () => {
     return (
-        <div>Map</div>
+        <div><Map>
+            </Map>
+            </div>
     )
 };
 
