@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.urls import path, include
-from api.models import User, Location
+from api.models import User, Hospital
 from rest_framework import routers, serializers, viewsets
 
 # Serializers define the API representation.
@@ -25,10 +25,10 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
         model = User
         fields = ['url', 'username', 'email', 'is_staff']
 
-class LocationSerializer(serializers.HyperlinkedModelSerializer):
+class HospitalSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = Location
-        fields = ['x', 'y']
+        model = Hospital
+        fields = ["name", "phone", "north_loc", "east_loc", "district", "min_till_doctor", "is_private", "er_type", "care_fields"]
 
 # ViewSets define the view behavior.
 class UserViewSet(viewsets.ModelViewSet):
@@ -36,15 +36,15 @@ class UserViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer
 
 # ViewSets define the view behavior.
-class LocationViewSet(viewsets.ModelViewSet):
-    queryset = Location.objects.all()
-    serializer_class = LocationSerializer
+class HospitalViewSet(viewsets.ModelViewSet):
+    queryset = Hospital.objects.all()
+    serializer_class = HospitalSerializer
 
 
 # Routers provide an easy way of automatically determining the URL conf.
 router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)
-router.register(r'locations', LocationViewSet)
+router.register(r'Hospital', HospitalViewSet)
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
