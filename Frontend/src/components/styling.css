@@ -1,4 +1,21 @@
-.filters{
+.hp-grid{
+    /* background-color: rgb(231, 231, 231); */
+    /* width: 50% !important;   */
+    margin-left: 10% !important;
+    margin-right: 10% !important;
+    margin-top: 5% !important;
+    margin-bottom: 5% !important;
+    /* border-radius: 25px !important;
+    border: 1px solid #3b3b3b !important;
+    border-spacing: 15px !important; */
+
+    
+}
+.main-grid{
     display: flex;
-    width: 100% !important;
+    justify-content: center;
+}
+
+.single-item{
+    padding:5% !important;
 }

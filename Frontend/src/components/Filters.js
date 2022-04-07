@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import InputLabel from '@mui/material/InputLabel';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import MenuItem from '@mui/material/MenuItem';
@@ -12,13 +12,21 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-const Filters = () => {
+
+import "./Filters.css";
+const Filters = ({careChoiceList}) => {
+    
     const [injuryType, setInjuryType] = useState('');
+    const [renderedCareChoiceList, setRenderedCareChoiceList] = useState([]);
     const [waitingtime, setWaitingtime] = useState('')
     const [district, setDistrict] = useState('');
     const [service, setservice] = useState('');
     const [expanded, setExpanded] = useState(false);
     const [sliderValue, setSliderValue] = useState(0);
+    useEffect(() => {
+        console.log(careChoiceList);
+        setRenderedCareChoiceList(careChoiceList?.map(choice => {return <MenuItem value={choice[1]}>{choice[1]}</MenuItem>}))
+    },[careChoiceList]);
 
     const handleDistanceChange = (p) => (e, isExpanded) =>{
         setExpanded(isExpanded ? p : false);
@@ -43,37 +51,10 @@ const Filters = () => {
                     label="Injury Type"
                     onChange={handleInjuryChange}
                 >
-                    <MenuItem value={10}>Broken bone</MenuItem>
-                    <MenuItem value={20}>Chest pain</MenuItem>
-                    <MenuItem value={30}>Else</MenuItem>
+                    {renderedCareChoiceList}
                 </Select>
 
             </FormControl>
-            <Accordion expanded={expanded === 'panel1'} onChange={handleDistanceChange('panel1')}>
-                <AccordionSummary
-                    expandIcon={<ExpandMoreIcon />}
-                    aria-controls="panel1bh-content"
-                    id="panel1bh-header"
-                >
-                    <Typography sx={{ width: '33%', flexShrink: 0 }}>
-                        Set Distance
-                    </Typography>
-                    <Typography sx={{ color: 'text.secondary' }}>{sliderValue}</Typography>
-                </AccordionSummary>
-                <AccordionDetails>
-                    <Slider
-                    aria-label="Distance"
-                    defaultValue={0}
-                    valueLabelDisplay="auto"
-                    step={10}
-                    getAriaValueText={(val) => setSliderValue(val+' km')}
-
-                    marks={true}
-                    min={0}
-                    max={100}
-                />
-                </AccordionDetails>
-            </Accordion>
             <FormControl fullWidth>
                 <InputLabel id="demo-simple-select-label">wished waiting time</InputLabel>
                 <Select
@@ -104,6 +85,33 @@ const Filters = () => {
                     <MenuItem value={30}>Bikor Rofe</MenuItem>
                 </Select>
 
+            </FormControl>
+            <FormControl fullWidth>
+            <Accordion expanded={expanded === 'panel1'} onChange={handleDistanceChange('panel1')}>
+                <AccordionSummary
+                    expandIcon={<ExpandMoreIcon />}
+                    aria-controls="panel1bh-content"
+                    id="panel1bh-header"
+                >
+                    <Typography sx={{ width: '33%', flexShrink: 0 }}>
+                        Set Distance
+                    </Typography>
+                    <Typography sx={{ color: 'text.secondary' }}>{sliderValue}</Typography>
+                </AccordionSummary>
+                <AccordionDetails>
+                    <Slider
+                    aria-label="Distance"
+                    defaultValue={0}
+                    valueLabelDisplay="auto"
+                    step={10}
+                    getAriaValueText={(val) => setSliderValue(val+' km')}
+
+                    marks={true}
+                    min={0}
+                    max={100}
+                />
+                </AccordionDetails>
+            </Accordion>
             </FormControl>
 
         </div>
