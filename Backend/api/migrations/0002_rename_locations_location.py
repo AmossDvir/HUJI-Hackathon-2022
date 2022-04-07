@@ -9,9 +9,9 @@ class Migration(migrations.Migration):
         ('api', '0001_initial'),
     ]
 
-    operations = [
-        migrations.RenameModel(
-            old_name='Locations',
-            new_name='Location',
-        ),
-    ]
+    # operations = [
+    #     migrations.RenameModel(
+    #         old_name='Locations',
+    #         new_name='Location',
+    #     ),
+    # ]
