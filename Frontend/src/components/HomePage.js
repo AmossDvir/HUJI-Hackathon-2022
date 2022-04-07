@@ -23,9 +23,18 @@ const HomePage = () => {
   const [careChoice, setCareChoice] = useState([]);
   const [careChoiceList, setCareChoiceList] = useState();
   const makeCareChoiceReq = async () => {
-    const {data} = await axios.get("http://127.0.0.1:8000/care_choice/");
+    const { data } = await axios.get("http://127.0.0.1:8000/care_choice/");
     setCareChoice(data);
   };
+
+  const makeOnSubmitReq = async () => {
+    const { data } = await axios.get("http://127.0.0.1:8000/by_params/",{params:{filter:{radius:5}}});
+    console.log(data)
+  };
+
+  const onSubmitClick = () => {
+    makeOnSubmitReq()
+  }
   useEffect(() => {
     makeCareChoiceReq();
   }, []);
@@ -40,13 +49,7 @@ const HomePage = () => {
         <Grid item xs={4}>
           <Item className="single-item">
             <Filters careChoiceList={careChoiceList}></Filters>
-            <Button
-              onClick={() => {
-                
-              }}
-            >
-              Submit
-            </Button>
+            <Button onClick={onSubmitClick}>Submit</Button>
           </Item>
         </Grid>
         <Grid item xs={8}>
