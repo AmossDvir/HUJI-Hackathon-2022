@@ -15,7 +15,8 @@ import CameraIcon from '@mui/icons-material/Camera';
 import LocalHospitalIcon from '@mui/icons-material/LocalHospital';
 
 import './NavigationStyles.css';
-import pic from "../images/Logo.png";
+import logoPic from "../images/Logo.png";
+import textLogoPic from "../images/TextLogo.png";
 
 const pages = ['Pricing', 'About Us'];
 const settings = ['Fastest Treatment: '];
@@ -43,7 +44,8 @@ return (
   <AppBar position="static">
     <Container maxWidth="xl">
       <Toolbar disableGutters>
-      <img className="image" src={pic} size />
+      <img className="image2" src={textLogoPic} />
+      <img className="image" src={logoPic} />
       <CameraIcon className="logo-icon"></CameraIcon> 
 
         <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
