@@ -1,9 +1,10 @@
 import React from "react";
 import HomePage from "./HomePage";
+import NavigationBar from "./NavigationBar";
 import "./styling.css"
 import axios from 'axios';
 const App = () => {
-    const  makeReq = async () => {const {data} = await axios.get('http://127.0.0.1:8000/locations/');
+    const  makeReq = async () => {const {data} = await axios.get('http://127.0.0.1:8000/Hospital/');
     console.log(data);
 }
 
@@ -11,6 +12,7 @@ const App = () => {
     
     return (
         <div>
+            <NavigationBar></NavigationBar>
             <HomePage></HomePage>
         </div>
     );
