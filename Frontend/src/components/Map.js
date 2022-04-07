@@ -10,7 +10,7 @@ const Map = () => {
   loading="lazy"
   allowfullscreen
   referrerpolicy="no-referrer-when-downgrade"
-  src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCa69e0TTQ-nwBUvwX7_te1AT2Qg80q8r4
+  src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCXKKme3jzfk4W1voYj23_SUZOnqDHWoeo
     &q=Space+Needle,Seattle+WA">
 </iframe>
 

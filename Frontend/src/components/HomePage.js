@@ -8,6 +8,7 @@ const HomePage = () => {
         <div>
             <Filters></Filters>
             <Suggestions></Suggestions>
+            <Map></Map>
         </div>
     )
 };
