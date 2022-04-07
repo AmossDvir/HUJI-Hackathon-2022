@@ -21,18 +21,18 @@ const Item = styled(Paper)(({ theme }) => ({
 
 const HomePage = () => {
     return (
-        <div>
-            <Grid container spacing={2}>
-                <Grid item width={800} height={300}>
-                    <Item className="filters">
+        <div className="main-grid">
+            <Grid className="hp-grid" container spacing={2}>
+                <Grid item xs={4}>
+                    <Item className="single-item">
                         <Filters></Filters>
                     </Item>
                 </Grid>
-                <Grid item xs={5} md={4}>
-                    <Item><Map></Map></Item>
+                <Grid item xs={8}>
+                    <Item className="single-item"><Map></Map></Item>
                 </Grid>
                 <Grid item xs={12}>
-                    <Item><Suggestions></Suggestions></Item>
+                    <Item className="single-item"><Suggestions></Suggestions></Item>
                 </Grid>
             </Grid>
 
