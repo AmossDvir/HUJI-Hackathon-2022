@@ -1,9 +1,13 @@
 import React from "react";
 import Map from "./Map";
-import Filters from "./filters/Filters";
+import Filters from "./Filters";
+import NestedList from "./NestedList";
 const HomePage = () => {
     return (
-        <div>Hello</div>
+        <div>
+            <Filters></Filters>
+
+        </div>
     )
 };
 
