@@ -1,42 +1,44 @@
+from email.policy import default
+from statistics import multimode
+from tkinter import ALL
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-from phonenumber_field.modelfields import PhoneNumberField
 from multiselectfield import MultiSelectField
 
 
 class User(AbstractUser):
     pass
-
-
-# Example: 
-# class Location(models.Model):
-#     # Here I define my fields
-#     x = models.BigIntegerField()
-#     y = models.BigIntegerField()
     
-# Create your models here.
 class Hospital(models.Model):
     class ER_TYPE(models.IntegerChoices):
-        HOS = 1, "HOSPITAL"
-        BIKUR = 2, "BIKUR_ROFE"
-        TEREM = 3, "TEREM"
+        HOS = 1, "Hospital"
+        BIKUR = 2, "Bikur_Rofe"
+        TEREM = 3, "Terem"
     
     class CARE_CHOICES(models.IntegerChoices):
-        GASTRO = 1, "GASTROENTEROLOGY"
-        GYNAECO = 2, "GYNAECOLOGY"
-        CARDI = 3, "CARDIOLOGY"
-        DENDIS = 4, "DENDISTRY"
-        PSYCH = 5, "PSYCHIATRY"
-        ORTHO = 6, "ORTHOPEDIC"
-        SURGERY = 7, "SURGERY"
+        ALL = 0, "All",
+        GASTRO = 1, "Gastroenterology"
+        GYNAECO = 2, "Gynaecology"
+        CARDI = 3, "Cardiology"
+        DENDIS = 4, "Dendistry"
+        PSYCH = 5, "Psychiatry"
+        ORTHO = 6, "Orthopedic"
+        SURGERY = 7, "Surgery"
+
+    class DISTRICTS(models.IntegerChoices):
+        NORTH = 1, "North",
+        CENTER = 2, "Center",
+        JERUSALEM = 3, "Jerusalem"
+        SOUTH = 4, "South"
+
 
     # our variables:
     name = models.CharField(max_length=30)
-    phone = PhoneNumberField(null=False, blank=False, unique=True) # maybe change later
-    # phone = models.CharField(max_length=12)
-    x_location = models.SmallIntegerField(max_length=8)
-    y_location = models.SmallIntegerField(max_length=8)
-    min_till_doctor = models.SmallIntegerField(max_length=8)
+    phone = models.CharField(max_length=12, unique=True)
+    north_loc = models.SmallIntegerField()
+    east_loc = models.SmallIntegerField()
+    district = models.PositiveSmallIntegerField(choices=DISTRICTS.choices, default=DISTRICTS.JERUSALEM)
+    min_till_doctor = models.SmallIntegerField()
     is_private = models.BooleanField()
     er_type = models.PositiveSmallIntegerField(choices=ER_TYPE.choices, default=ER_TYPE.HOS)
-    care_fields = MultiSelectField(choices=CARE_CHOICES.choices)
+    care_fields = MultiSelectField(choices=CARE_CHOICES.choices, default=CARE_CHOICES.ALL)
