@@ -25,7 +25,7 @@ def get_hospitals_by_parameters(request):
     if request.method == "GET":
         param = request.GET.dict()
         if param["filter"] == "radius" :
-            hospitals =  db_handler.get_by_radius(north_loc= 31773465, east_loc=35196418, radius=4 )
+            hospitals =  db_handler.get_by_radius(north_loc= 31773465, east_loc=35196418, radius=2 )
         if param["filter"] == "district" or param["filter"] == "er_type":
             pass
         serializer = HospitalSerializer(hospitals, many=True)
