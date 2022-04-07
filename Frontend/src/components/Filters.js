@@ -51,31 +51,6 @@ const Filters = () => {
                 </Select>
 
             </FormControl>
-            <Accordion expanded={expanded === 'panel1'} onChange={handleDistanceChange('panel1')}>
-                <AccordionSummary
-                    expandIcon={<ExpandMoreIcon />}
-                    aria-controls="panel1bh-content"
-                    id="panel1bh-header"
-                >
-                    <Typography sx={{ width: '33%', flexShrink: 0 }}>
-                        Set Distance
-                    </Typography>
-                    <Typography sx={{ color: 'text.secondary' }}>{sliderValue}</Typography>
-                </AccordionSummary>
-                <AccordionDetails>
-                    <Slider
-                    aria-label="Distance"
-                    defaultValue={0}
-                    valueLabelDisplay="auto"
-                    step={10}
-                    getAriaValueText={(val) => setSliderValue(val+' km')}
-
-                    marks={true}
-                    min={0}
-                    max={100}
-                />
-                </AccordionDetails>
-            </Accordion>
             <FormControl fullWidth>
                 <InputLabel id="demo-simple-select-label">wished waiting time</InputLabel>
                 <Select
@@ -106,6 +81,33 @@ const Filters = () => {
                     <MenuItem value={30}>Bikor Rofe</MenuItem>
                 </Select>
 
+            </FormControl>
+            <FormControl fullWidth>
+            <Accordion expanded={expanded === 'panel1'} onChange={handleDistanceChange('panel1')}>
+                <AccordionSummary
+                    expandIcon={<ExpandMoreIcon />}
+                    aria-controls="panel1bh-content"
+                    id="panel1bh-header"
+                >
+                    <Typography sx={{ width: '33%', flexShrink: 0 }}>
+                        Set Distance
+                    </Typography>
+                    <Typography sx={{ color: 'text.secondary' }}>{sliderValue}</Typography>
+                </AccordionSummary>
+                <AccordionDetails>
+                    <Slider
+                    aria-label="Distance"
+                    defaultValue={0}
+                    valueLabelDisplay="auto"
+                    step={10}
+                    getAriaValueText={(val) => setSliderValue(val+' km')}
+
+                    marks={true}
+                    min={0}
+                    max={100}
+                />
+                </AccordionDetails>
+            </Accordion>
             </FormControl>
 
         </div>

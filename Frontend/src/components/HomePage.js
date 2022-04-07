@@ -6,7 +6,7 @@ import NestedList from "./NestedList";
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
-import { Grid } from "@mui/material";
+import { Button, Grid } from "@mui/material";
 import { red } from "@mui/material/colors";
 import { convertLength } from "@mui/material/styles/cssUtils";
 
@@ -26,7 +26,9 @@ const HomePage = () => {
                 <Grid item xs={4}>
                     <Item className="single-item">
                         <Filters></Filters>
+                        <Button>Submit</Button>
                     </Item>
+                    
                 </Grid>
                 <Grid item xs={8}>
                     <Item className="single-item"><Map></Map></Item>

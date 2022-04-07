@@ -4,8 +4,8 @@ const Map = () => {
   return (
     <div id="map">
       <iframe
-        width="600"
-        height="450"
+        width="800"
+        height="600"
         style={{ border: 0 }}
         loading="lazy"
         allowfullscreen
