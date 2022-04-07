@@ -6,6 +6,7 @@ import NestedList from "./NestedList";
 const HomePage = () => {
     return (
         <div>
+            <Map></Map>
             <Filters></Filters>
             <Suggestions></Suggestions>
         </div>
