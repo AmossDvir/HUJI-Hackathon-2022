@@ -43,6 +43,7 @@ def get_nearest_places(n_loc, e_loc, num):
     hospitals = sorted(hospitals, key=functools.cmp_to_key(compare_hospitals))
     return hospitals[:num]
 
+
 def get_by_radius(north_loc, east_loc, radius):
     """" 
     Return all hospitals inside the given radius from the given location
@@ -53,6 +54,18 @@ def get_by_radius(north_loc, east_loc, radius):
         if cal_distance(north_loc, east_loc, h.north_loc, h.east_loc) <= radius:
             nearest_hospitals.append(h)
     return nearest_hospitals
+
+
+def get_er_types():
+    return Hospital.ER_TYPE.choices
+
+
+def get_care_choices():
+    return Hospital.CARE_CHOICES.choices
+
+
+def get_district_choices():
+    return Hospital.DISTRICTS.choices
 
 
 def cal_distance(n_loc, e_loc, other_n_loc, other_e_loc):
