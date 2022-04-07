@@ -2,16 +2,16 @@ from math import sqrt, pow
 import functools
 from api.models import Hospital
 
-# hospital_dict = {
-#     "name": "Hadash Ein Karem",
-#     "phone": "026777111",
-#     "north_loc" : 31765090,
-#     "east_loc" : 35148933,
+# d = {
+#     "name": "Augusta Victoria Hospital",
+#     "phone": " 026279902",
+#     "north_loc" : 31787424,
+#     "east_loc" : 35248810,
 #     "district" : Hospital.DISTRICTS.JERUSALEM,
-#     "min_till_doctor": 125,
-#     "is_private": False,
+#     "min_till_doctor": 105,
+#     "is_private": True,
 #     "er_type": Hospital.ER_TYPE.HOS,
-#     "care_fields": [Hospital.CARE_CHOICES.PSYCH, Hospital.CARE_CHOICES.CARDI]
+#     "care_fields": [Hospital.CARE_CHOICES.PSYCH, Hospital.CARE_CHOICES.GYNAECO]
 # }
 
 def add_hospital(hosp_dict):
