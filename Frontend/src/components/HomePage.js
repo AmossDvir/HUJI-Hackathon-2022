@@ -6,6 +6,7 @@ const HomePage = () => {
     return (
         <div>
             <Filters></Filters>
+            {/* <Map></Map> */}
 
         </div>
     )
