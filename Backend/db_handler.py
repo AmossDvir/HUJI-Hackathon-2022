@@ -2,17 +2,17 @@ from math import sqrt, pow
 import functools
 from api.models import Hospital
 
-# hospital_dict = {
-#     "name": "Hadash Ein Karem",
-#     "phone": "026777111",
-#     "north_loc" : 31765090,
-#     "east_loc" : 35148933,
-#     "district" : Hospital.DISTRICTS.JERUSALEM,
-#     "min_till_doctor": 125,
-#     "is_private": False,
-#     "er_type": Hospital.ER_TYPE.HOS,
-#     "care_fields": [Hospital.CARE_CHOICES.PSYCH, Hospital.CARE_CHOICES.CARDI]
-# }
+hospital_dict = {
+    "name": "Hadash Ein Karem",
+    "phone": "026777111",
+    "north_loc" : 31765090,
+    "east_loc" : 35148933,
+    "district" : Hospital.DISTRICTS.JERUSALEM,
+    "min_till_doctor": 125,
+    "is_private": False,
+    "er_type": Hospital.ER_TYPE.HOS,
+    "care_fields": [Hospital.CARE_CHOICES.PSYCH, Hospital.CARE_CHOICES.CARDI]
+}
 
 def add_hospital(hosp_dict):
     h = Hospital(**hosp_dict)
@@ -69,5 +69,5 @@ def get_district_choices():
 
 
 def cal_distance(n_loc, e_loc, other_n_loc, other_e_loc):
-    return sqrt(pow(n_loc - other_n_loc, 2) + pow(e_loc - other_e_loc, 2))
+    return sqrt(pow(n_loc - other_n_loc, 2) + pow(e_loc - other_e_loc, 2))/10000
 
