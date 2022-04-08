@@ -6,8 +6,10 @@
     background-color: rgb(255, 83, 83);
 }
 
-.css-hip9hq-MuiPaper-root-MuiAppBar-root{
+
+.css-1su9lvs-MuiPaper-root-MuiAppBar-root{
     background-color: #a7d4b4 !important;
+
 }
 .image{
     width:110px;
@@ -15,4 +17,11 @@
 
 .image2{
     width:220px;
+}
+
+.navbar{
+    position: fixed;
+    z-index: 10;
+    background-color: aqua;
+
 }

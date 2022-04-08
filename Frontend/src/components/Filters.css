@@ -3,3 +3,8 @@
     flex-direction: column;
     justify-content: space-around;
 }
+
+.field-selector{
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+}

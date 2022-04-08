@@ -14,16 +14,21 @@ import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 import "./Filters.css";
-const Filters = ({ careChoiceList, onCareSelection }) => {
+const Filters = ({
+  careChoiceList,
+  onCareSelection,
+  serviceTypeList,
+  onServiceTypeSelection,
+}) => {
   const [injuryType, setInjuryType] = useState("");
   const [renderedCareChoiceList, setRenderedCareChoiceList] = useState([]);
+  const [renderedServiceTypeList, setRenderedServiceTypeList] = useState([]);
   const [waitingtime, setWaitingtime] = useState("");
   const [district, setDistrict] = useState("");
-  const [service, setservice] = useState("");
+  const [service, setService] = useState("");
   const [expanded, setExpanded] = useState(false);
   const [sliderValue, setSliderValue] = useState(0);
   useEffect(() => {
-    console.log(careChoiceList);
     setRenderedCareChoiceList(
       careChoiceList?.map((choice) => {
         return <MenuItem value={choice[1]}>{choice[1]}</MenuItem>;
@@ -31,24 +36,31 @@ const Filters = ({ careChoiceList, onCareSelection }) => {
     );
   }, [careChoiceList]);
 
+  useEffect(() => {
+    setRenderedServiceTypeList(
+      serviceTypeList?.map((choice) => {
+        return <MenuItem value={choice[1]}>{choice[1]}</MenuItem>;
+      })
+    );
+  }, [serviceTypeList]);
+
   const handleDistanceChange = (p) => (e, isExpanded) => {
     setExpanded(isExpanded ? p : false);
   };
   const handleInjuryChange = (e) => {
     setInjuryType(e.target.value);
-    console.log(e.target.value[0]);
     onCareSelection(e.target.value[0]);
-
   };
   const handleTimeChange = (e) => {
     setWaitingtime(e.target.value);
   };
-  const handleserviceChange = (e) => {
-    setservice(e.target.value);
+  const handleServiceChange = (e) => {
+    setService(e.target.value);
+    onServiceTypeSelection(e.target.value[0]);
   };
   return (
     <div>
-      <FormControl fullWidth>
+      <FormControl fullWidth className="field-selector">
         <InputLabel id="demo-simple-select-label">Injury Type</InputLabel>
         <Select
           labelId="demo-simple-select-label"
@@ -60,37 +72,19 @@ const Filters = ({ careChoiceList, onCareSelection }) => {
           {renderedCareChoiceList}
         </Select>
       </FormControl>
-      <FormControl fullWidth>
-        <InputLabel id="demo-simple-select-label">
-          wished waiting time
-        </InputLabel>
-        <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          value={waitingtime}
-          label="Wished waiting time"
-          onChange={handleTimeChange}
-        >
-          <MenuItem value={10}>1 Hour or less</MenuItem>
-          <MenuItem value={20}>1-3 Hours</MenuItem>
-          <MenuItem value={30}>3-6 Hours</MenuItem>
-        </Select>
-      </FormControl>
-      <FormControl fullWidth>
+      <FormControl fullWidth className="field-selector">
         <InputLabel id="demo-simple-select-label">Service Type</InputLabel>
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
           value={service}
           label="Service Type"
-          onChange={handleserviceChange}
+          onChange={handleServiceChange}
         >
-          <MenuItem value={10}>Hospital</MenuItem>
-          <MenuItem value={20}>Terem</MenuItem>
-          <MenuItem value={30}>Bikor Rofe</MenuItem>
+          {renderedServiceTypeList}
         </Select>
       </FormControl>
-      <FormControl fullWidth>
+      <FormControl fullWidth className="field-selector">
         <Accordion
           expanded={expanded === "panel1"}
           onChange={handleDistanceChange("panel1")}
