@@ -16,7 +16,7 @@ const AboutUs = () => {
     <div className="main-div">
       <div class="about-section">
         <h1>EasyMed, Who are we?</h1>
-        <p>A young innovative startup, trying to improve the PRODACTIVITY of Health systmes.</p>
+        <p>A young innovative startup, trying to improve the PRODUCTIVITY of Health systems.</p>
       </div>
       <div className="secondery-div">
 
