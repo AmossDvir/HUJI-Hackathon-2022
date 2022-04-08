@@ -9,6 +9,13 @@ from rest_framework.renderers import JSONRenderer
 import db_handler
 from .models import Hospital
 
+CUR_LOC_N = 31773465
+CUR_LOC_E = 35196418
+TYPE_DICT = {"Hospital": 1, "Bikur_Rofe": 2, "Terem" : 3 }
+DISTRICT_DICT = {"North" : 1,"Center" : 2, "Jerusalem" : 3, "South" : 4}
+CARE_DICT = {"Other" : 0, "Broken bone" : 1, "Cut" : 2, "Rash" : 3, "Non lethal allergy" : 4, "Shortness of breath" :5 , "Chest pain" : 6, "Flu" : 7 }
+
+
 class HospitalSerializer(serializers.ModelSerializer):
     class Meta:
         model = Hospital
@@ -21,53 +28,23 @@ def get_all_hospitals(request):
     return JsonResponse(serializer.data, safe=False)
 
 
-# def get_hospitals_by_parameters(request):
-#     if request.method == "GET":
-#         param = request.GET.dict()
-#         north_loc = param["north"]
-#         east_loc = param["east"]
-#         # if param["filter"] == "radius" :
-#         #     hospitals =  db_handler.get_by_radius(north_loc= 31773465, east_loc=35196418, radius=2 )
-#         # if param["filter"] == "district":
-#         #     pass
-#         all_hos = db_handler.get_all()
-#         if param["radius"]:
-#             r_hos = db_handler.get_by_radius(north_loc, east_loc, param["radius"])
-#         else:
-#             r_hos = all_hos
-#         if not param["disrict"]:
-#             d_hos = db_handler.get_by_field("disrict",param["district"])
-#         else:
-#             d_hos = all_hos
-#         if not param["care"]:
-#             c_hos = db_handler.get_by_field("care",param["care"])
-#         else:
-#             c_hos = all_hos
-#         if not param["er"]:
-#             d_hos = db_handler.get_by_field("er",param["er"])
-#         else:
-#             d_hos = all_hos
-#         serializer = HospitalSerializer(hospitals, many=True)
-#         return JsonResponse(serializer.data, safe=False)
-#     return JsonResponse({'email': 'leila@example.com'}, safe=False)
-    
 def get_hospitals_by_parameters(request):
     if request.method == "GET":
         param = request.GET.dict()
-        north_loc = int(param["north"])
-        east_loc = int(param["east"])
+        north_loc = CUR_LOC_N
+        east_loc = CUR_LOC_E
         all_hos = db_handler.get_all()
         if param["radius"]:
             r_hos = db_handler.get_by_radius(north_loc, east_loc, int(param["radius"]))
             all_hos = list(set(all_hos) & set(r_hos))
-        if param["district"]:
-            d_hos = db_handler.get_by_field("district",param["district"])
-            all_hos = list(set(all_hos) & set(d_hos))
-        if param["care"]:
-            c_hos = db_handler.get_by_field("care_fields",param["care"])
+        # if param["district"]:
+        #     d_hos = db_handler.get_by_field("district",DISTRICT_DICT[param["district"]])
+        #     all_hos = list(set(all_hos) & set(d_hos))
+        if not param["care"]:
+            c_hos = db_handler.get_by_field("care",CARE_DICT[param["care"]])
             all_hos = list(set(all_hos) & set(c_hos))
-        if param["er"]:
-            e_hos = db_handler.get_by_field("er_type",param["er"])
+        if not param["er"]:
+            e_hos = db_handler.get_by_field("er",TYPE_DICT[param["er"]])
             all_hos = list(set(all_hos) & set(e_hos))
         serializer = HospitalSerializer(all_hos, many=True)
         return JsonResponse(serializer.data, safe=False)
@@ -99,3 +76,10 @@ def er_type(request):
     J_choice = {}
     J_choice = Convert(choices,J_choice)
     return JsonResponse(J_choice, safe=False)
+
+
+def emergency(request):
+    param = request.GET.dict()
+    best_hospital = db_handler.get_nearest_places(CUR_LOC_N, CUR_LOC_E, num=1)
+    serializer = HospitalSerializer(best_hospital[0])
+    return JsonResponse(serializer.data, safe=False)
