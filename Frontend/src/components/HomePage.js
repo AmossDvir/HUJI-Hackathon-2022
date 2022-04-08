@@ -19,7 +19,7 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-const HomePage = () => {
+const HomePage = ({ locationName }) => {
   const [careChoice, setCareChoice] = useState([]);
   const [careChoiceList, setCareChoiceList] = useState();
   const [careSelection, setCareSelection] = useState("");
@@ -27,6 +27,11 @@ const HomePage = () => {
   const [serviceType, setServiceType] = useState([]);
   const [serviceTypeList, setServiceTypeList] = useState();
   const [serviceTypeSelection, setServiceTypeSelection] = useState("");
+
+  const [submitData, setSubmitData] = useState([]);
+
+  const [sliderValue, setSliderValue] = useState(0);
+
 
   const makeCareChoiceReq = async () => {
     const { data } = await axios.get("http://127.0.0.1:8000/care_choice/");
@@ -41,13 +46,14 @@ const HomePage = () => {
   const makeOnSubmitReq = async () => {
     const { data } = await axios.get("http://127.0.0.1:8000/by_params/", {
       params: {
-        radius: 5,
+        radius: sliderValue,
         care: careSelection,
         er: serviceTypeSelection,
         north: 351964181,
         east: 31773465,
       },
     });
+    setSubmitData(data);
   };
 
   const onSubmitClick = () => {
@@ -57,7 +63,6 @@ const HomePage = () => {
     makeCareChoiceReq();
     makeServiceTypeReq();
   }, []);
-
 
   useEffect(() => {
     setCareChoiceList(Object.entries(careChoice));
@@ -77,18 +82,20 @@ const HomePage = () => {
               onCareSelection={setCareSelection}
               serviceTypeList={serviceTypeList}
               onServiceTypeSelection={setServiceTypeSelection}
+              setSliderValue={setSliderValue}
+              sliderValue={sliderValue}
             ></Filters>
             <Button onClick={onSubmitClick}>Submit</Button>
           </Item>
         </Grid>
         <Grid item xs={8}>
           <Item className="single-item">
-            <Map></Map>
+            <Map locationName={locationName}></Map>
           </Item>
         </Grid>
         <Grid item xs={12}>
           <Item className="single-item">
-            <Suggestions></Suggestions>
+            <Suggestions data={submitData}></Suggestions>
           </Item>
         </Grid>
       </Grid>

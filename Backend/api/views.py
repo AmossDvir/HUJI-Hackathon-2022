@@ -37,14 +37,12 @@ def get_hospitals_by_parameters(request):
         if param["radius"]:
             r_hos = db_handler.get_by_radius(north_loc, east_loc, int(param["radius"]))
             all_hos = list(set(all_hos) & set(r_hos))
-        # if param["district"]:
-        #     d_hos = db_handler.get_by_field("district",DISTRICT_DICT[param["district"]])
-        #     all_hos = list(set(all_hos) & set(d_hos))
-        if not param["care"]:
-            c_hos = db_handler.get_by_field("care",CARE_DICT[param["care"]])
+
+        if param["care"] and "er" in param and param["er"] != 1:
+            c_hos = db_handler.get_by_field("care_fields",[CARE_DICT[param["care"]]])
             all_hos = list(set(all_hos) & set(c_hos))
-        if not param["er"]:
-            e_hos = db_handler.get_by_field("er",TYPE_DICT[param["er"]])
+        if param["er"]:
+            e_hos = db_handler.get_by_field("er_type",TYPE_DICT[param["er"]])
             all_hos = list(set(all_hos) & set(e_hos))
         serializer = HospitalSerializer(all_hos, many=True)
         return JsonResponse(serializer.data, safe=False)

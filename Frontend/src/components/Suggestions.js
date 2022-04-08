@@ -11,17 +11,21 @@ import { red } from '@mui/material/colors';
 
 
 
-const Suggestions = () => {
+const Suggestions = ({ data }) => {
+    const renderedRows = data.length > 0 ? data.map((row) => {return (
+        <TableRow
+                            key={row.name}
+                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                        >
+                            <TableCell component="th" scope="row">
+                                {row.name}
+                            </TableCell>
+                            <TableCell align="right">{row.min_till_doctor}</TableCell>
+                            <TableCell align="right">{row.icon}</TableCell>
+                            <TableCell align="right">{(Math.sqrt(Math.pow(row.north_loc-31773465,2)+Math.pow(row.east_loc-35196418,2))/10000).toFixed(4)}</TableCell>
+                        </TableRow>
+    )}) : <div>No Results</div>;
 
-    function createData(name, timeToDoctor, icon, distance) {
-        return { name, timeToDoctor, icon, distance };
-    }
-
-    const rows = [
-        createData('Shaare Zedek Medical Crnter Emergency Room', 240 , <AccessTimeFilledSharpIcon sx={{ color: "red" }}></AccessTimeFilledSharpIcon>, 2.2),
-        createData('Terem Romema Emergency Room' , 20, <AccessTimeFilledSharpIcon sx={{ color: "green" }}></AccessTimeFilledSharpIcon>,4.8),
-        createData('Hadasa Har Hatsofim Emergency Room', 192 ,<AccessTimeFilledSharpIcon sx={{ color: "red" }}></AccessTimeFilledSharpIcon>, 10),
-    ];
     return (
 
         <TableContainer component={Paper}>
@@ -35,19 +39,7 @@ const Suggestions = () => {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {rows.map((row) => (
-                        <TableRow
-                            key={row.name}
-                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                        >
-                            <TableCell component="th" scope="row">
-                                {row.name}
-                            </TableCell>
-                            <TableCell align="right">{row.timeToDoctor}</TableCell>
-                            <TableCell align="right">{row.icon}</TableCell>
-                            <TableCell align="right">{row.distance}</TableCell>
-                        </TableRow>
-                    ))}
+                    {renderedRows}
                 </TableBody>
             </Table>
         </TableContainer>

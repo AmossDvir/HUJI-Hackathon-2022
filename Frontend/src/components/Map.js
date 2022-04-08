@@ -1,6 +1,6 @@
 import React from "react";
 
-const Map = () => {
+const Map = ({ locationName }) => {
   return (
     <div id="map">
       <iframe
@@ -10,8 +10,8 @@ const Map = () => {
         loading="lazy"
         allowfullscreen
         referrerpolicy="no-referrer-when-downgrade"
-        src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCXKKme3jzfk4W1voYj23_SUZOnqDHWoeo
-  &q=Givat+Ram"
+        src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyCXKKme3jzfk4W1voYj23_SUZOnqDHWoeo
+  &q=${locationName}`}
       ></iframe>
     </div>
   );

@@ -19,15 +19,15 @@ const Filters = ({
   onCareSelection,
   serviceTypeList,
   onServiceTypeSelection,
+  setSliderValue,
+  sliderValue
 }) => {
   const [injuryType, setInjuryType] = useState("");
   const [renderedCareChoiceList, setRenderedCareChoiceList] = useState([]);
   const [renderedServiceTypeList, setRenderedServiceTypeList] = useState([]);
-  const [waitingtime, setWaitingtime] = useState("");
   const [district, setDistrict] = useState("");
   const [service, setService] = useState("");
   const [expanded, setExpanded] = useState(false);
-  const [sliderValue, setSliderValue] = useState(0);
   useEffect(() => {
     setRenderedCareChoiceList(
       careChoiceList?.map((choice) => {
@@ -51,9 +51,7 @@ const Filters = ({
     setInjuryType(e.target.value);
     onCareSelection(e.target.value[0]);
   };
-  const handleTimeChange = (e) => {
-    setWaitingtime(e.target.value);
-  };
+
   const handleServiceChange = (e) => {
     setService(e.target.value);
     onServiceTypeSelection(e.target.value[0]);
@@ -106,12 +104,12 @@ const Filters = ({
               aria-label="Distance"
               defaultValue={0}
               valueLabelDisplay="auto"
-              step={10}
-              getAriaValueText={(val) => setSliderValue(val + " km")}
+              step={5}
+              getAriaValueText={(val) => setSliderValue(val)}
               marks={true}
               min={0}
               max={100}
-            />
+            /> Km
           </AccordionDetails>
         </Accordion>
       </FormControl>

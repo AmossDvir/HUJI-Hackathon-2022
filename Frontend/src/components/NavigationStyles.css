@@ -19,6 +19,10 @@
     width:220px;
 }
 
+.red-highlight{
+    background-color: rgb(250, 49, 49);
+    border-radius: 60px;
+}
 .navbar{
     position: fixed;
     z-index: 10;
