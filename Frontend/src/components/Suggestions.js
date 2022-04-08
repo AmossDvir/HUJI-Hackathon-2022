@@ -54,12 +54,12 @@ const Suggestions = ({ data }) => {
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>Emergency room</TableCell>
-            <TableCell align="right">Time to doctor&nbsp;(min)</TableCell>
+            <TableCell>Emergency Room</TableCell>
+            <TableCell align="right">Time to Doctor&nbsp;(min)</TableCell>
             <TableCell align="right">
               <AccessTimeFilledSharpIcon></AccessTimeFilledSharpIcon>
             </TableCell>
-            <TableCell align="right">distance&nbsp;(km)</TableCell>
+            <TableCell align="right">Distance&nbsp;(km)</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>{renderedRows}</TableBody>
