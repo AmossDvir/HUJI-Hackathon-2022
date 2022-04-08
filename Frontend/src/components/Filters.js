@@ -14,7 +14,7 @@ import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 import "./Filters.css";
-const Filters = ({ careChoiceList }) => {
+const Filters = ({ careChoiceList, onCareSelection }) => {
   const [injuryType, setInjuryType] = useState("");
   const [renderedCareChoiceList, setRenderedCareChoiceList] = useState([]);
   const [waitingtime, setWaitingtime] = useState("");
@@ -36,6 +36,9 @@ const Filters = ({ careChoiceList }) => {
   };
   const handleInjuryChange = (e) => {
     setInjuryType(e.target.value);
+    console.log(e.target.value[0]);
+    onCareSelection(e.target.value[0]);
+
   };
   const handleTimeChange = (e) => {
     setWaitingtime(e.target.value);

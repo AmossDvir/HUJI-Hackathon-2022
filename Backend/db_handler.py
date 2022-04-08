@@ -3,18 +3,6 @@ import functools
 from api.models import Hospital
 
 
-# d = {
-#     "name": "Augusta Victoria Hospital",
-#     "phone": " 026279902",
-#     "north_loc" : 31787424,
-#     "east_loc" : 35248810,
-#     "district" : Hospital.DISTRICTS.JERUSALEM,
-#     "min_till_doctor": 105,
-#     "is_private": True,
-#     "er_type": Hospital.ER_TYPE.HOS,
-#     "care_fields": [Hospital.CARE_CHOICES.PSYCH, Hospital.CARE_CHOICES.GYNAECO]
-# }
-
 def add_hospital(hosp_dict):
     h = Hospital(**hosp_dict)
     h.save()
@@ -52,7 +40,7 @@ def get_by_radius(north_loc, east_loc, radius):
     nearest_hospitals = []
     hospitals = get_all()
     for h in hospitals:
-        if cal_distance(north_loc, east_loc, h.north_loc, h.east_loc) <= radius:
+        if cal_distance(north_loc, east_loc, h.north_loc, h.east_loc) <= int(radius):
             nearest_hospitals.append(h)
     return nearest_hospitals
 
@@ -70,5 +58,5 @@ def get_district_choices():
 
 
 def cal_distance(n_loc, e_loc, other_n_loc, other_e_loc):
-    return sqrt(pow(n_loc - other_n_loc, 2) + pow(e_loc - other_e_loc, 2))/10000
+    return sqrt(pow(int(n_loc) - int(other_n_loc), 2) + pow(int(e_loc) - int(other_e_loc), 2))/100000000
 

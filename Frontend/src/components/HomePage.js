@@ -22,13 +22,14 @@ const Item = styled(Paper)(({ theme }) => ({
 const HomePage = () => {
   const [careChoice, setCareChoice] = useState([]);
   const [careChoiceList, setCareChoiceList] = useState();
+  const [careSelection,setCareSelection] = useState("");
   const makeCareChoiceReq = async () => {
     const { data } = await axios.get("http://127.0.0.1:8000/care_choice/");
     setCareChoice(data);
   };
 
   const makeOnSubmitReq = async () => {
-    const { data } = await axios.get("http://127.0.0.1:8000/by_params/",{params:{filter:{radius:5}}});
+    const { data } = await axios.get("http://127.0.0.1:8000/by_params/",{params:{radius:5,district:"",care:careSelection,er:"",north:351964181,east:31773465}});
     console.log(data)
   };
 
@@ -48,7 +49,7 @@ const HomePage = () => {
       <Grid className="hp-grid" container spacing={2}>
         <Grid item xs={4}>
           <Item className="single-item">
-            <Filters careChoiceList={careChoiceList}></Filters>
+            <Filters careChoiceList={careChoiceList} onCareSelection={setCareSelection}></Filters>
             <Button onClick={onSubmitClick}>Submit</Button>
           </Item>
         </Grid>

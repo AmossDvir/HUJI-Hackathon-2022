@@ -54,24 +54,20 @@ def get_all_hospitals(request):
 def get_hospitals_by_parameters(request):
     if request.method == "GET":
         param = request.GET.dict()
-        north_loc = param["north"]
-        east_loc = param["east"]
-        # if param["filter"] == "radius" :
-        #     hospitals =  db_handler.get_by_radius(north_loc= 31773465, east_loc=35196418, radius=2 )
-        # if param["filter"] == "distrisct":
-        #     pass
+        north_loc = int(param["north"])
+        east_loc = int(param["east"])
         all_hos = db_handler.get_all()
         if param["radius"]:
-            r_hos = db_handler.get_by_radius(north_loc, east_loc, param["radius"])
+            r_hos = db_handler.get_by_radius(north_loc, east_loc, int(param["radius"]))
             all_hos = list(set(all_hos) & set(r_hos))
-        if param["disrict"]:
-            d_hos = db_handler.get_by_field("disrict",param["district"])
+        if param["district"]:
+            d_hos = db_handler.get_by_field("district",param["district"])
             all_hos = list(set(all_hos) & set(d_hos))
-        if not param["care"]:
-            c_hos = db_handler.get_by_field("care",param["care"])
+        if param["care"]:
+            c_hos = db_handler.get_by_field("care_fields",param["care"])
             all_hos = list(set(all_hos) & set(c_hos))
-        if not param["er"]:
-            e_hos = db_handler.get_by_field("er",param["er"])
+        if param["er"]:
+            e_hos = db_handler.get_by_field("er_type",param["er"])
             all_hos = list(set(all_hos) & set(e_hos))
         serializer = HospitalSerializer(all_hos, many=True)
         return JsonResponse(serializer.data, safe=False)
