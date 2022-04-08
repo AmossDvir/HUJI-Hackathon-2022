@@ -55,6 +55,7 @@ urlpatterns = [
     path('all_hospitals/', api_views.get_all_hospitals),
     path('district_choice/', api_views.district_choices),
     path('care_choice/', api_views.care_choices),
+    path('emergency/', api_views.emergency),
     path('er_type/', api_views.er_type),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('admin/', admin.site.urls),
