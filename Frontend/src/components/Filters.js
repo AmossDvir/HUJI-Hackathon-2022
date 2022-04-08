@@ -102,7 +102,7 @@ const Filters = ({
           <AccordionDetails>
             <Slider
               aria-label="Distance"
-              defaultValue={0}
+              defaultValue={20}
               valueLabelDisplay="auto"
               step={5}
               getAriaValueText={(val) => setSliderValue(val)}

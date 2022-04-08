@@ -27,7 +27,7 @@ const App = () => {
   useEffect(() => {
     emergencyClicked
       ? setLocationName(emergencyLoc)
-      : setLocationName("Jerusalem");
+      : setLocationName("Givat Ram");
   }, [emergencyClicked]);
 
   const onEmergencyClick = () => {

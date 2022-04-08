@@ -13,7 +13,7 @@ import MenuItem from "@mui/material/MenuItem";
 import Stack from "@mui/material/Stack";
 
 import "./NavigationStyles.css";
-import logoPic from "../images/Logo.png";
+import logoPic from "../images/Logo2.png";
 import emergencyPic from "../images/Emergency.png";
 import textLogoPic from "../images/TextLogo.png";
 import Link from "./routing/Link";
@@ -40,7 +40,7 @@ const NavigationBar = ({ setOnAboutUs, emergencyClicked,onEmergencyClick }) => {
         <Toolbar disableGutters onClick={() => setOnAboutUs(false)}>
             <Link href="/">
           <img className="image2" src={textLogoPic} />
-          <img className="image" src={logoPic} />
+          <img className="image" style={{paddingRight:"20px"}} src={logoPic} />
           </Link>
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton

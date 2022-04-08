@@ -38,7 +38,7 @@ def get_hospitals_by_parameters(request):
             r_hos = db_handler.get_by_radius(north_loc, east_loc, int(param["radius"]))
             all_hos = list(set(all_hos) & set(r_hos))
 
-        if param["care"] and "er" in param and param["er"] != 1:
+        if param["care"]:
             c_hos = db_handler.get_by_field("care_fields",[CARE_DICT[param["care"]]])
             all_hos = list(set(all_hos) & set(c_hos))
         if param["er"]:

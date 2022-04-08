@@ -6,7 +6,9 @@
     background-color: rgb(255, 83, 83);
 }
 
-
+.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium.MuiButtonBase-root.css-1q39md6-MuiButtonBase-root-MuiButton-root{
+    font-size: large;
+}
 .css-1su9lvs-MuiPaper-root-MuiAppBar-root{
     background-color: #a7d4b4 !important;
 
