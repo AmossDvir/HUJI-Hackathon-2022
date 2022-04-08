@@ -13,14 +13,14 @@ class Hospital(models.Model):
         TEREM = 3, "Terem"
     
     class CARE_CHOICES(models.IntegerChoices):
-        ALL = 0, "All",
-        GASTRO = 1, "Gastroenterology"
-        GYNAECO = 2, "Gynaecology"
-        CARDI = 3, "Cardiology"
-        DENDIS = 4, "Dendistry"
-        PSYCH = 5, "Psychiatry"
-        ORTHO = 6, "Orthopedic"
-        SURGERY = 7, "Surgery"
+        OTHER = 0, "Other"
+        BROKEN_BONE = 1, "Broken bone"
+        CUT = 2, "Cut"
+        RASH = 3, "Rash"
+        ALLERGY = 4, "Non lethal allergy"
+        BREATH = 5, "Shortness of breath"
+        CHEST = 6, "Chest pain"
+        FLU = 7, "Flu"
 
     class DISTRICTS(models.IntegerChoices):
         NORTH = 1, "North",
@@ -38,7 +38,7 @@ class Hospital(models.Model):
     min_till_doctor = models.SmallIntegerField()
     is_private = models.BooleanField()
     er_type = models.PositiveSmallIntegerField(choices=ER_TYPE.choices, default=ER_TYPE.HOS)
-    care_fields = MultiSelectField(choices=CARE_CHOICES.choices, default=CARE_CHOICES.ALL)
+    care_fields = MultiSelectField(choices=CARE_CHOICES.choices, default=CARE_CHOICES.OTHER)
 
     # def __str__(self):
     #     return self.name

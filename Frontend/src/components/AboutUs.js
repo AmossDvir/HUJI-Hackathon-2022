@@ -6,6 +6,11 @@ import Box from '@mui/material/Box';
 import { Avatar } from "@mui/material";
 import { Stack } from "@mui/material";
 import "./AboutUs.css"
+import amosspic from "../images/Amoss.png";
+import omerpic from "../images/Hamotz.png";
+import orpic from "../images/Or.png"
+import amirpic from "../images/Amir.png"
+import yonatanpic from "../images/Yonatan.png"
 const AboutUs = () => {
   return (
     <div className="main-div">
@@ -20,11 +25,11 @@ const AboutUs = () => {
         <div class="row">
           <div class="column">
             <div class="card">
-              {/* <img src="/w3images/team1.jpg" alt="Jane" style="width:100%"></img> */}
               <div class="container">
+                <img className="amosspic" src={amosspic} />
                 <h2>Amoss Dvir</h2>
                 <p class="title">CEO & Master</p>
-                <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+                <p>3rd year Computer Science studant at the Hebrew University</p>
                 <p>amoss.dvir@mail.huji.ac.il</p>
                 <p><button class="button">Contact</button></p>
               </div>
@@ -33,11 +38,11 @@ const AboutUs = () => {
 
           <div class="column">
             <div class="card">
-              {/* <img src="/w3images/team2.jpg" alt="Mike" style="width:100%" /> */}
+              <img className="orpic" src={orpic}/>
               <div class="container">
                 <h2>Ore Snir</h2>
                 <p class="title">CTO</p>
-                <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+                <p>3rd year Computer Science studant at the Hebrew University</p>
                 <p>ore.snir@mail.huji.ac.il</p>
                 <p><button class="button">Contact</button></p>
               </div>
@@ -46,11 +51,11 @@ const AboutUs = () => {
 
           <div class="column">
             <div class="card">
-              {/* <img src="/w3images/team3.jpg" alt="John" style="width:100%"> </img> */}
+              <img className="omerpic" src={omerpic}/>
               <div class="container">
                 <h2>Omer Beeri-Shani</h2>
                 <p class="title">Software Manager</p>
-                <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+                <p>2nd year Electrical Engeneer studant at the Hebrew University</p>
                 <p>omer.beerishani@mail.huji.ac.il</p>
                 <p><button class="button">Contact</button></p>
               </div>
@@ -58,11 +63,11 @@ const AboutUs = () => {
           </div>
           <div class="column">
             <div class="card">
-              {/* <img src="/w3images/team3.jpg" alt="John" style="width:100%"> </img> */}
+              <img className="amirpic" src={amirpic}/>
               <div class="container">
                 <h2>Amir Kelman</h2>
                 <p class="title">Prodact Manager</p>
-                <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+                <p>2nd year Computer Science studant at the Hebrew University</p>
                 <p>amir.kelman@mail.huji.ac.il</p>
                 <p><button class="button">Contact</button></p>
               </div>
@@ -70,11 +75,11 @@ const AboutUs = () => {
           </div>
           <div class="column">
             <div class="card">
-              {/* <img src="/w3images/team3.jpg" alt="John" style="width:100%"> </img> */}
+              <img className="yonatanpic" src={yonatanpic}/>
               <div class="container">
                 <h2>Yonatan Sugarmen</h2>
                 <p class="title">Chairman & Founder</p>
-                <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+                <p>2nd year Electrical Engeneer studant at the Hebrew University</p>
                 <p>yonatan.sugarmen@mail.huji.ac.il</p>
                 <p><button class="button">Contact</button></p>
               </div>
