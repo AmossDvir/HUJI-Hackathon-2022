@@ -27,8 +27,8 @@ const Suggestions = ({ data }) => {
                   color: `${
                     row.min_till_doctor > 200
                       ? "red"
-                      : row.min_till_doctor > 60
-                      ? "yellow"
+                      : row.min_till_doctor > 80
+                      ? "orange"
                       : "green"
                   }`,
                 }}

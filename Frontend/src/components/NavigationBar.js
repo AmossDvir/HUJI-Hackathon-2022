@@ -101,7 +101,7 @@ const NavigationBar = ({ setOnAboutUs, emergencyClicked,onEmergencyClick }) => {
                 >
                   <img className={`image ${emergencyClicked?"red-highlight":""}`} src={emergencyPic} />
                 </IconButton>
-                <div style={{ color: "red",display: "flex",alignContent: "spaceBetween",justifyContent: "center",paddingLeft:"5px",fontSize: "24px",fontWeight: "bolder" }}>Emergency</div>
+                {/* <div style={{ color: "red",display: "flex",alignContent: "spaceBetween",justifyContent: "center",paddingLeft:"5px",fontSize: "24px",fontWeight: "bolder" }}>Emergency</div> */}
               </Stack>
             </Tooltip>
 
