@@ -4,6 +4,22 @@ body {
   }
   .main-div{
 
+
+  }
+  .amosspic{
+      width: 160px;
+  }
+  .omerpic{
+      width: 160px
+  }
+  .orpic{
+      width: 160px
+  }
+  .amirpic{
+      width: 160px;
+  }
+  .yonatanpic{
+      width: 160px;
   }
   .header-team{
     display: flex;justify-content: space-evenly;
@@ -32,7 +48,7 @@ body {
   .about-section {
     padding: 50px;
     text-align: center;
-    background-color: #474e5d;
+    background-color: #212122;
     color: white;
   }
   
