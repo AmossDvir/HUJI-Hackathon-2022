@@ -6,7 +6,7 @@ import axios from 'axios';
 import AboutUs from "./AboutUs";
 const App = () => {
     const  makeReq = async () => {const {data} = await axios.get('http://127.0.0.1:8000/Hospital/');
-    console.log(data);
+    // console.log(data);
 }
 
     makeReq()
