@@ -9,6 +9,7 @@ import { styled } from '@mui/material/styles';
 import { Grid } from "@mui/material";
 import { red } from "@mui/material/colors";
 import { convertLength } from "@mui/material/styles/cssUtils";
+import AboutUs from "./AboutUs";
 
 
 const Item = styled(Paper)(({ theme }) => ({

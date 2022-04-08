@@ -3,6 +3,7 @@ import HomePage from "./HomePage";
 import NavigationBar from "./NavigationBar";
 import "./styling.css"
 import axios from 'axios';
+import AboutUs from "./AboutUs";
 const App = () => {
     const  makeReq = async () => {const {data} = await axios.get('http://127.0.0.1:8000/Hospital/');
     console.log(data);
@@ -13,7 +14,8 @@ const App = () => {
     return (
         <div>
             <NavigationBar></NavigationBar>
-            <HomePage></HomePage>
+            {/* <HomePage></HomePage> */}
+            <AboutUs></AboutUs>
         </div>
     );
 }
