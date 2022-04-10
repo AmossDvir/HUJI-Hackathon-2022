@@ -12,6 +12,7 @@ const Map = ({ locationName }) => {
         referrerpolicy="no-referrer-when-downgrade"
         src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyCXKKme3jzfk4W1voYj23_SUZOnqDHWoeo
   &q=${locationName}`}
+        title="Google Maps"
       ></iframe>
     </div>
   );

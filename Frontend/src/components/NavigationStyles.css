@@ -1,33 +1,37 @@
-.logo-icon{
-    font-size:50px;
+.logo-icon {
+  font-size: 50px;
 }
 
-.emergency-tab{
-    background-color: rgb(255, 83, 83);
+.emergency-tab {
+  background-color: rgb(255, 83, 83);
 }
 
-.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium.MuiButtonBase-root.css-1q39md6-MuiButtonBase-root-MuiButton-root{
-    font-size: large;
+.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium.MuiButtonBase-root.css-1q39md6-MuiButtonBase-root-MuiButton-root {
+  font-size: large;
 }
-.css-1su9lvs-MuiPaper-root-MuiAppBar-root{
-    background-color: #a7d4b4 !important;
-
+.css-1su9lvs-MuiPaper-root-MuiAppBar-root {
+  background-color: #a7d4b4 !important;
 }
-.image{
-    width:110px;
-}
-
-.image2{
-    width:220px;
+.image {
+  width: 100px;
 }
 
-.red-highlight{
-    background-color: rgb(250, 49, 49);
-    border-radius: 60px;
+.image2 {
+  width: 300px;
 }
-.navbar{
-    position: fixed;
-    z-index: 10;
-    background-color: aqua;
 
+.red-highlight {
+  /* background-color: rgb(250, 49, 49); */
+  border-radius: 100%;
+  /* padding:4px; */
+  background: rgb(245,45,45);
+  /* background: radial-gradient(circle, rgb(255, 0, 0) 35%, rgba(167,212,180,1) 60%); */
+  /* background: #F00000;  fallback for old browsers */
+/* background: -webkit-linear-gradient(to right, #DC281E, #F00000);  Chrome 10-25, Safari 5.1-6 */
+/* background: radial-gradient(circle at center,#f3180d 10%, #a7d4b4 70%); W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+.navbar {
+  position: fixed;
+  z-index: 10;
 }

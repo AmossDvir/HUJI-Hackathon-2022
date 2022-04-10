@@ -1,14 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Map from "./Map";
 import Filters from "./Filters";
 import Suggestions from "./Suggestions";
-import NestedList from "./NestedList";
-import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import { styled } from "@mui/material/styles";
 import { Button, Grid } from "@mui/material";
-import { red } from "@mui/material/colors";
-import { convertLength } from "@mui/material/styles/cssUtils";
 import axios from "axios";
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -31,6 +27,7 @@ const HomePage = ({ locationName }) => {
   const [submitData, setSubmitData] = useState([]);
 
   const [sliderValue, setSliderValue] = useState(0);
+  const resultsRef = useRef();
 
 
   const makeCareChoiceReq = async () => {
@@ -54,6 +51,7 @@ const HomePage = ({ locationName }) => {
       },
     });
     setSubmitData(data);
+    resultsRef.current.scrollIntoView();
   };
 
   const onSubmitClick = () => {
@@ -85,7 +83,8 @@ const HomePage = ({ locationName }) => {
               setSliderValue={setSliderValue}
               sliderValue={sliderValue}
             ></Filters>
-            <Button onClick={onSubmitClick}>Submit</Button>
+            <Button variant="outlined" onClick={onSubmitClick}>Submit</Button>
+            {/* <Button onClick={onSubmitClick}>Submit</Button> */}
           </Item>
         </Grid>
         <Grid item xs={8}>
@@ -94,7 +93,7 @@ const HomePage = ({ locationName }) => {
           </Item>
         </Grid>
         <Grid item xs={12}>
-          <Item className="single-item">
+          <Item ref={resultsRef} className="single-item">
             <Suggestions data={submitData}></Suggestions>
           </Item>
         </Grid>

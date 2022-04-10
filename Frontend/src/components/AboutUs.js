@@ -1,16 +1,11 @@
 import React from "react";
-import { styled } from '@mui/material/styles';
-import Grid from '@mui/material/Grid';
-import Paper from '@mui/material/Paper';
-import Box from '@mui/material/Box';
-import { Avatar } from "@mui/material";
-import { Stack } from "@mui/material";
-import "./AboutUs.css"
 import amosspic from "../images/Amoss.png";
 import omerpic from "../images/Hamotz.png";
 import orpic from "../images/Or.png"
 import amirpic from "../images/Amir.png"
 import yonatanpic from "../images/Yonatan.png"
+import "./AboutUs.css"
+
 const AboutUs = () => {
   return (
     <div className="main-div">
@@ -26,7 +21,7 @@ const AboutUs = () => {
           <div class="column">
             <div class="card">
               <div class="container">
-                <img className="amosspic" src={amosspic} />
+                <img className="amosspic" src={amosspic} alt="Creator" />
                 <h2>Amoss Dvir</h2>
                 <p class="title">CEO & Master</p>
                 <p>3rd year Computer Science studant at the Hebrew University</p>
@@ -38,7 +33,7 @@ const AboutUs = () => {
 
           <div class="column">
             <div class="card">
-              <img className="orpic" src={orpic}/>
+              <img className="orpic" src={orpic} alt="Creator"/>
               <div class="container">
                 <h2>Ore Snir</h2>
                 <p class="title">CTO</p>
@@ -51,7 +46,7 @@ const AboutUs = () => {
 
           <div class="column">
             <div class="card">
-              <img className="omerpic" src={omerpic}/>
+              <img className="omerpic" src={omerpic} alt="Creator"/>
               <div class="container">
                 <h2>Omer Beeri-Shani</h2>
                 <p class="title">Software Manager</p>
@@ -63,7 +58,7 @@ const AboutUs = () => {
           </div>
           <div class="column">
             <div class="card">
-              <img className="amirpic" src={amirpic}/>
+              <img className="amirpic" src={amirpic} alt="Creator"/>
               <div class="container">
                 <h2>Amir Kelman</h2>
                 <p class="title">Prodact Manager</p>
@@ -75,7 +70,7 @@ const AboutUs = () => {
           </div>
           <div class="column">
             <div class="card">
-              <img className="yonatanpic" src={yonatanpic}/>
+              <img className="yonatanpic" src={yonatanpic} alt="Creator"/>
               <div class="container">
                 <h2>Yonatan Sugarmen</h2>
                 <p class="title">Chairman & Founder</p>

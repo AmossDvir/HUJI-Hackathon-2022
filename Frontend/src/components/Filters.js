@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from "react";
 import InputLabel from "@mui/material/InputLabel";
-import OutlinedInput from "@mui/material/OutlinedInput";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
-import ListItemText from "@mui/material/ListItemText";
-import Select, { SelectChangeEvent } from "@mui/material/Select";
-import { Checkbox } from "@mui/material";
+import Select from "@mui/material/Select";
 import { Slider } from "@mui/material";
 import Accordion from "@mui/material/Accordion";
 import AccordionDetails from "@mui/material/AccordionDetails";
@@ -25,7 +22,6 @@ const Filters = ({
   const [injuryType, setInjuryType] = useState("");
   const [renderedCareChoiceList, setRenderedCareChoiceList] = useState([]);
   const [renderedServiceTypeList, setRenderedServiceTypeList] = useState([]);
-  const [district, setDistrict] = useState("");
   const [service, setService] = useState("");
   const [expanded, setExpanded] = useState(false);
   useEffect(() => {
