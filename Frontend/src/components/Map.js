@@ -8,8 +8,8 @@ const Map = ({ locationName }) => {
         height="600"
         style={{ border: 0 }}
         loading="lazy"
-        allowfullscreen
-        referrerpolicy="no-referrer-when-downgrade"
+        allowFullScreen
+        referrerPolicy="no-referrer-when-downgrade"
         src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyCXKKme3jzfk4W1voYj23_SUZOnqDHWoeo
   &q=${locationName}`}
         title="Google Maps"

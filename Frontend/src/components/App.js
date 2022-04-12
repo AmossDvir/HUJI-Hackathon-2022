@@ -2,15 +2,18 @@ import React, { useEffect, useState, useRef } from "react";
 import HomePage from "./HomePage";
 import NavigationBar from "./NavigationBar";
 import Route from "./routing/Route";
-import "./styling.css";
 import axios from "axios";
 import AboutUs from "./AboutUs";
-import ArrowCircleUpIcon from '@mui/icons-material/ArrowCircleUp';
+import ArrowCircleUpIcon from "@mui/icons-material/ArrowCircleUp";
+import useLocation from "./hooks/useLocation";
+import "./styling.css";
 
 const App = () => {
-  const [locationName, setLocationName] = useState("");
-  const [emergencyLoc, setEmergencyLoc] = useState("");
+  const defLoc = "Israel";
+  // const [location, setLocation] = useState("Israel");
   const [emergencyClicked, setEmergencyClicked] = useState(false);
+  const [location, setLocation] = useLocation(defLoc, emergencyClicked);
+  const [emergencyLoc, setEmergencyLoc] = useState("");
   const [isTopButtonVisible, setIsTopButtonVisible] = useState(true);
   const topElementRef = useRef();
 
@@ -19,10 +22,10 @@ const App = () => {
     setEmergencyLoc(data.name);
   };
 
-  useEffect(
-    () => window.addEventListener("scroll", onToggleScrollButtonVisible),
-    []
-  );
+  useEffect(() => {
+    window.addEventListener("scroll", onToggleScrollButtonVisible);
+
+  }, []);
 
   const onToggleScrollButtonVisible = () => {
     const scrolled = document.documentElement.scrollTop;
@@ -30,9 +33,7 @@ const App = () => {
   };
 
   useEffect(() => {
-    emergencyClicked
-      ? setLocationName(emergencyLoc)
-      : setLocationName("Givat Ram");
+    emergencyClicked ? setLocation(emergencyLoc) : setLocation(defLoc);
   }, [emergencyClicked]);
 
   const onEmergencyClick = () => {
@@ -48,7 +49,7 @@ const App = () => {
         onAboutUsClicked={() => setEmergencyClicked(false)}
       ></NavigationBar>
       <Route path="/">
-        <HomePage locationName={locationName}></HomePage>
+        <HomePage locationName={location}></HomePage>
       </Route>
       <Route path="/aboutus">
         <AboutUs></AboutUs>

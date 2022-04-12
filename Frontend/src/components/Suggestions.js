@@ -50,21 +50,23 @@ const Suggestions = ({ data }) => {
     );
 
   return (
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell>Emergency Room</TableCell>
-            <TableCell align="right">Time to Doctor&nbsp;(min)</TableCell>
-            <TableCell align="right">
-              <AccessTimeFilledSharpIcon></AccessTimeFilledSharpIcon>
-            </TableCell>
-            <TableCell align="right">Distance&nbsp;(km)</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>{renderedRows}</TableBody>
-      </Table>
-    </TableContainer>
+    <div>
+      <TableContainer component={Paper}>
+        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+          <TableHead>
+            <TableRow>
+              <TableCell>Emergency Room</TableCell>
+              <TableCell align="right">Time to Doctor&nbsp;(min)</TableCell>
+              <TableCell align="right">
+                <AccessTimeFilledSharpIcon></AccessTimeFilledSharpIcon>
+              </TableCell>
+              <TableCell align="right">Distance&nbsp;(km)</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>{renderedRows}</TableBody>
+        </Table>
+      </TableContainer>
+    </div>
   );
 };
 

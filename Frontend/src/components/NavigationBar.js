@@ -22,7 +22,7 @@ const NavigationBar = ({
   onAboutUsClicked,
 }) => {
   return (
-    <AppBar className="navbar" position="sticky; top: 0">
+    <AppBar className="navbar" position="sticky">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Link href="/">

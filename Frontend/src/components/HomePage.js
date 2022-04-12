@@ -84,7 +84,6 @@ const HomePage = ({ locationName }) => {
               sliderValue={sliderValue}
             ></Filters>
             <Button variant="outlined" onClick={onSubmitClick}>Submit</Button>
-            {/* <Button onClick={onSubmitClick}>Submit</Button> */}
           </Item>
         </Grid>
         <Grid item xs={8}>
