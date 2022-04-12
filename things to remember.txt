@@ -8,5 +8,9 @@ python manage.py showmigrations
 shows the history of migrations and what's in already
 
 
-requirements:
-pip install django-cors-headers
+
+to install all dependencies:
+pip install -r requirements.txt
+
+to install virtual environmentL
+python -m venv ./venv/
