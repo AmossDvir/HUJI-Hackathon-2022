@@ -43,7 +43,7 @@ const NavigationBar = ({
             {pages.map((page) => (
               <Link href="aboutus">
                 <Button
-                onClick={() => {onAboutUsClicked() ;console.log("Htht");}}
+                onClick={() => {onAboutUsClicked();}}
                   key={page}
                   sx={{ my: 2, color: "white", display: "block" }}
                 >

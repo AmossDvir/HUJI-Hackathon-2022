@@ -24,7 +24,7 @@ const AboutUs = () => {
                 <img className="amosspic" src={amosspic} alt="Creator" />
                 <h2>Amoss Dvir</h2>
                 <p className="title">CEO & Master</p>
-                <p>3rd year Computer Science studant at the Hebrew University</p>
+                <p>3rd year Computer Science student at the Hebrew University</p>
                 <p>amoss.dvir@mail.huji.ac.il</p>
                 <p><button className="button">Contact</button></p>
               </div>
@@ -37,7 +37,7 @@ const AboutUs = () => {
               <div className="container">
                 <h2>Ore Snir</h2>
                 <p className="title">CTO</p>
-                <p>3rd year Computer Science studant at the Hebrew University</p>
+                <p>3rd year Computer Science student at the Hebrew University</p>
                 <p>ore.snir@mail.huji.ac.il</p>
                 <p><button className="button">Contact</button></p>
               </div>
@@ -50,7 +50,7 @@ const AboutUs = () => {
               <div className="container">
                 <h2>Omer Beeri-Shani</h2>
                 <p className="title">Software Manager</p>
-                <p>2nd year Electrical Engeneer studant at the Hebrew University</p>
+                <p>2nd year Electrical Engeneer student at the Hebrew University</p>
                 <p>omer.beerishani@mail.huji.ac.il</p>
                 <p><button className="button">Contact</button></p>
               </div>
@@ -61,8 +61,8 @@ const AboutUs = () => {
               <img className="amirpic" src={amirpic} alt="Creator"/>
               <div className="container">
                 <h2>Amir Kelman</h2>
-                <p className="title">Prodact Manager</p>
-                <p>2nd year Computer Science studant at the Hebrew University</p>
+                <p className="title">Product Manager</p>
+                <p>2nd year Computer Science student at the Hebrew University</p>
                 <p>amir.kelman@mail.huji.ac.il</p>
                 <p><button className="button">Contact</button></p>
               </div>
@@ -74,7 +74,7 @@ const AboutUs = () => {
               <div className="container">
                 <h2>Yonatan Sugarmen</h2>
                 <p className="title">Chairman & Founder</p>
-                <p>2nd year Electrical Engeneer studant at the Hebrew University</p>
+                <p>2nd year Electrical Engeneer student at the Hebrew University</p>
                 <p>yonatan.sugarmen@mail.huji.ac.il</p>
                 <p><button className="button">Contact</button></p>
               </div>

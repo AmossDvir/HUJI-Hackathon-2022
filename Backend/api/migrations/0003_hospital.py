@@ -22,7 +22,7 @@ class Migration(migrations.Migration):
                 ('district', models.PositiveSmallIntegerField(choices=[(1, 'North'), (2, 'Center'), (3, 'Jerusalem'), (4, 'South')], default=3)),
                 ('min_till_doctor', models.SmallIntegerField()),
                 ('is_private', models.BooleanField()),
-                ('er_type', models.PositiveSmallIntegerField(choices=[(1, 'Hospital'), (2, 'Bikur_Rofe'), (3, 'Terem')], default=1)),
+                ('er_type', models.PositiveSmallIntegerField(choices=[(1, 'Hospital'), (2, 'Bikur Rofe'), (3, 'Terem')], default=1)),
                 ('care_fields', multiselectfield.db.fields.MultiSelectField(choices=[(0, 'All'), (1, 'Gastroenterology'), (2, 'Gynaecology'), (3, 'Cardiology'), (4, 'Dendistry'), (5, 'Psychiatry'), (6, 'Orthopedic'), (7, 'Surgery')], default=0, max_length=15)),
             ],
         ),

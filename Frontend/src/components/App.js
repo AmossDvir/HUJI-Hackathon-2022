@@ -10,7 +10,6 @@ import "./styling.css";
 
 const App = () => {
   const defLoc = "Israel";
-  // const [location, setLocation] = useState("Israel");
   const [emergencyClicked, setEmergencyClicked] = useState(false);
   const [location, setLocation] = useLocation(defLoc, emergencyClicked);
   const [emergencyLoc, setEmergencyLoc] = useState("");
@@ -42,14 +41,14 @@ const App = () => {
 
   useEffect(() => makeEmerReq(), []);
   return (
-    <div ref={topElementRef}>
+    <div className="main" ref={topElementRef}>
       <NavigationBar
         emergencyClicked={emergencyClicked}
         onEmergencyClick={onEmergencyClick}
         onAboutUsClicked={() => setEmergencyClicked(false)}
       ></NavigationBar>
       <Route path="/">
-        <HomePage locationName={location}></HomePage>
+        <HomePage location={location}></HomePage>
       </Route>
       <Route path="/aboutus">
         <AboutUs></AboutUs>

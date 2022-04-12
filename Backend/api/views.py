@@ -11,9 +11,9 @@ from .models import Hospital
 
 CUR_LOC_N = 31773465
 CUR_LOC_E = 35196418
-TYPE_DICT = {"Hospital": 1, "Bikur_Rofe": 2, "Terem" : 3 }
+TYPE_DICT = {"All Institutes":0, "Hospital": 1, "Bikur Rofe": 2, "Terem" : 3 }
 DISTRICT_DICT = {"North" : 1,"Center" : 2, "Jerusalem" : 3, "South" : 4}
-CARE_DICT = {"Other" : 0, "Broken bone" : 1, "Cut" : 2, "Rash" : 3, "Non lethal allergy" : 4, "Shortness of breath" :5 , "Chest pain" : 6, "Flu" : 7 }
+CARE_DICT = {"All Types" : 0, "Broken bone" : 1, "Cut" : 2, "Rash" : 3, "Non lethal allergy" : 4, "Shortness of breath" :5 , "Chest pain" : 6, "Flu" : 7 }
 
 
 class HospitalSerializer(serializers.ModelSerializer):
@@ -31,17 +31,18 @@ def get_all_hospitals(request):
 def get_hospitals_by_parameters(request):
     if request.method == "GET":
         param = request.GET.dict()
-        north_loc = CUR_LOC_N
-        east_loc = CUR_LOC_E
+        north_loc = float(param["north"])
+        east_loc = float(param["east"])
+        print(north_loc, east_loc)
         all_hos = db_handler.get_all()
         if param["radius"]:
             r_hos = db_handler.get_by_radius(north_loc, east_loc, int(param["radius"]))
             all_hos = list(set(all_hos) & set(r_hos))
 
-        if param["care"]:
+        if param["care"] and param["care"] != "All Types":
             c_hos = db_handler.get_by_field("care_fields",[CARE_DICT[param["care"]]])
             all_hos = list(set(all_hos) & set(c_hos))
-        if param["er"]:
+        if param["er"] and param["er"] != "All Institutes":
             e_hos = db_handler.get_by_field("er_type",TYPE_DICT[param["er"]])
             all_hos = list(set(all_hos) & set(e_hos))
         serializer = HospitalSerializer(all_hos, many=True)

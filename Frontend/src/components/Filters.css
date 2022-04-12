@@ -5,6 +5,12 @@
 }
 
 .field-selector{
-    padding-top: 10px !important;
-    padding-bottom: 10px !important;
+    padding-top: 15px !important;
+    padding-bottom: 15px !important;
+}
+
+.submit{
+    /* width:50%; */
+    padding-top: 25px !important;
+    align-items: center;
 }

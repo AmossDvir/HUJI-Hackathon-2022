@@ -42,6 +42,7 @@ def get_by_radius(north_loc, east_loc, radius):
     for h in hospitals:
         if cal_distance(north_loc, east_loc, h.north_loc, h.east_loc) <= int(radius):
             nearest_hospitals.append(h)
+    print(nearest_hospitals)
     return nearest_hospitals
 
 
@@ -58,6 +59,10 @@ def get_district_choices():
 
 
 def cal_distance(n_loc, e_loc, other_n_loc, other_e_loc):
+    print(other_n_loc)
+    print(n_loc)
+
+    print(sqrt(pow(int(n_loc) - int(other_n_loc), 2) + pow(int(e_loc) - int(other_e_loc), 2))/100000000)
     return sqrt(pow(int(n_loc) - int(other_n_loc), 2) + pow(int(e_loc) - int(other_e_loc), 2))/100000000
 
 

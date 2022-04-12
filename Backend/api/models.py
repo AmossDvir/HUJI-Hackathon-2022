@@ -8,12 +8,13 @@ class User(AbstractUser):
     
 class Hospital(models.Model):
     class ER_TYPE(models.IntegerChoices):
+        ALL = 0, "All Institutes"
         HOS = 1, "Hospital"
-        BIKUR = 2, "Bikur_Rofe"
+        BIKUR = 2, "Bikur Rofe"
         TEREM = 3, "Terem"
     
     class CARE_CHOICES(models.IntegerChoices):
-        OTHER = 0, "Other"
+        ALL = 0, "All Types"
         BROKEN_BONE = 1, "Broken bone"
         CUT = 2, "Cut"
         RASH = 3, "Rash"
@@ -37,8 +38,5 @@ class Hospital(models.Model):
     district = models.PositiveSmallIntegerField(choices=DISTRICTS.choices, default=DISTRICTS.JERUSALEM)
     min_till_doctor = models.SmallIntegerField()
     is_private = models.BooleanField()
-    er_type = models.PositiveSmallIntegerField(choices=ER_TYPE.choices, default=ER_TYPE.HOS)
-    care_fields = MultiSelectField(choices=CARE_CHOICES.choices, default=CARE_CHOICES.OTHER)
-
-    # def __str__(self):
-    #     return self.name
+    er_type = models.PositiveSmallIntegerField(choices=ER_TYPE.choices, default=ER_TYPE.ALL)
+    care_fields = MultiSelectField(choices=CARE_CHOICES.choices, default=CARE_CHOICES.ALL)

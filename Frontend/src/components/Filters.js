@@ -3,7 +3,7 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import { Slider } from "@mui/material";
+import { Button, Slider } from "@mui/material";
 import Accordion from "@mui/material/Accordion";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import AccordionSummary from "@mui/material/AccordionSummary";
@@ -17,7 +17,8 @@ const Filters = ({
   serviceTypeList,
   onServiceTypeSelection,
   setSliderValue,
-  sliderValue
+  sliderValue,
+  onSubmitClick
 }) => {
   const [injuryType, setInjuryType] = useState("");
   const [renderedCareChoiceList, setRenderedCareChoiceList] = useState([]);
@@ -48,6 +49,11 @@ const Filters = ({
     onCareSelection(e.target.value[0]);
   };
 
+  const checkoutSubmit = () => {
+    console.log(injuryType.length)
+    injuryType && service ?onSubmitClick():onSubmitClick();
+  }
+
   const handleServiceChange = (e) => {
     setService(e.target.value);
     onServiceTypeSelection(e.target.value[0]);
@@ -67,10 +73,10 @@ const Filters = ({
         </Select>
       </FormControl>
       <FormControl fullWidth className="field-selector">
-        <InputLabel id="demo-simple-select-label">Service Type</InputLabel>
+        <InputLabel id="demo-simple-select-error-label">Service Type</InputLabel>
         <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
+          labelId="demo-simple-select-error-label"
+          id="demo-simple-select-error"
           value={service}
           label="Service Type"
           onChange={handleServiceChange}
@@ -108,6 +114,8 @@ const Filters = ({
             /> Km
           </AccordionDetails>
         </Accordion>
+        <FormControl className="field-selector submit">
+        <Button variant="outlined" onClick={() => checkoutSubmit()}>Submit</Button></FormControl>
       </FormControl>
     </div>
   );

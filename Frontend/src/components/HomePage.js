@@ -4,7 +4,7 @@ import Filters from "./Filters";
 import Suggestions from "./Suggestions";
 import Paper from "@mui/material/Paper";
 import { styled } from "@mui/material/styles";
-import { Button, Grid } from "@mui/material";
+import { Button, Container, Grid } from "@mui/material";
 import axios from "axios";
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -15,7 +15,7 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-const HomePage = ({ locationName }) => {
+const HomePage = ({ location }) => {
   const [careChoice, setCareChoice] = useState([]);
   const [careChoiceList, setCareChoiceList] = useState();
   const [careSelection, setCareSelection] = useState("");
@@ -46,8 +46,10 @@ const HomePage = ({ locationName }) => {
         radius: sliderValue,
         care: careSelection,
         er: serviceTypeSelection,
-        north: 351964181,
-        east: 31773465,
+        north: 351924458,
+        east: 31779513,
+        // north: location.split(",")[0],
+        // east: location.split(",")[1],
       },
     });
     setSubmitData(data);
@@ -71,9 +73,10 @@ const HomePage = ({ locationName }) => {
   }, [serviceType]);
 
   return (
+    <Container maxWidth="xl">
     <div className="main-grid">
-      <Grid className="hp-grid" container spacing={2}>
-        <Grid item xs={4}>
+      <Grid className="hp-grid" container spacing={4}>
+        <Grid item xs={5}>
           <Item className="single-item">
             <Filters
               careChoiceList={careChoiceList}
@@ -82,13 +85,14 @@ const HomePage = ({ locationName }) => {
               onServiceTypeSelection={setServiceTypeSelection}
               setSliderValue={setSliderValue}
               sliderValue={sliderValue}
+              onSubmitClick={onSubmitClick}
             ></Filters>
-            <Button variant="outlined" onClick={onSubmitClick}>Submit</Button>
+            
           </Item>
         </Grid>
-        <Grid item xs={8}>
+        <Grid item xs={7}>
           <Item className="single-item">
-            <Map locationName={locationName}></Map>
+            <Map location={location}></Map>
           </Item>
         </Grid>
         <Grid item xs={12}>
@@ -98,6 +102,7 @@ const HomePage = ({ locationName }) => {
         </Grid>
       </Grid>
     </div>
+    </Container>
   );
 };
 

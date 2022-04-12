@@ -1,17 +1,17 @@
 import React from "react";
 
-const Map = ({ locationName }) => {
+const Map = ({ location }) => {
   return (
     <div id="map">
       <iframe
-        width="800"
-        height="600"
+        width="100%"
+        height="450px"
         style={{ border: 0 }}
         loading="lazy"
         allowFullScreen
         referrerPolicy="no-referrer-when-downgrade"
         src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyCXKKme3jzfk4W1voYj23_SUZOnqDHWoeo
-  &q=${locationName}`}
+  &q=${location}`}
         title="Google Maps"
       ></iframe>
     </div>
