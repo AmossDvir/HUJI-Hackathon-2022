@@ -30,7 +30,7 @@ const useLocation = (defaultLoc, emergencyClicked) => {
               navigator.permissions.revoke({ name: "geolocation" });
             }
             result.onchange = () => {
-              console.log(result.state);
+              // console.log(result.state);
             };
           }
         });

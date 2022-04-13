@@ -18,13 +18,18 @@ const Filters = ({
   onServiceTypeSelection,
   setSliderValue,
   sliderValue,
-  onSubmitClick
+  onSubmitClick,
+  serverValidationErrors,
+  setServerValidationErrors,
 }) => {
   const [injuryType, setInjuryType] = useState("");
+  const [service, setService] = useState("");
   const [renderedCareChoiceList, setRenderedCareChoiceList] = useState([]);
   const [renderedServiceTypeList, setRenderedServiceTypeList] = useState([]);
-  const [service, setService] = useState("");
   const [expanded, setExpanded] = useState(false);
+  const [injuryErrors, setInjuryErrors] = useState(false);
+  const [serviceErrors, setServiceErrors] = useState(false);
+  const [submitDisabled, setSubmitDisabled] = useState(false);
   useEffect(() => {
     setRenderedCareChoiceList(
       careChoiceList?.map((choice) => {
@@ -41,18 +46,57 @@ const Filters = ({
     );
   }, [serviceTypeList]);
 
-  const handleDistanceChange = (p) => (e, isExpanded) => {
+  useEffect(() => {if (!injuryErrors && !serviceErrors) {
+    setSubmitDisabled(false);
+  }}, [injuryErrors, serviceErrors]);
+
+  const handleDistanceChange = (p) => (isExpanded) => {
     setExpanded(isExpanded ? p : false);
   };
+
+  const validateInjuryChange = (e) => {
+    if (e.target.value === 0 || injuryType !== "") {
+      setInjuryErrors(false);
+
+      
+      setServerValidationErrors(
+        serverValidationErrors.includes("er") ? ["er"] : []
+      );
+    } else {
+      setInjuryErrors(true);
+    }
+  };
+
+  const validateServiceChange = (e) => {
+    if (e.target.value === 0 || service !== "") {
+      setServiceErrors(false);
+      setServerValidationErrors(
+        serverValidationErrors.includes("care") ? ["care"] : []
+      );
+    } else {
+      setServiceErrors(true);
+    }
+  };
+
   const handleInjuryChange = (e) => {
     setInjuryType(e.target.value);
     onCareSelection(e.target.value[0]);
   };
 
   const checkoutSubmit = () => {
-    console.log(injuryType.length)
-    injuryType && service ?onSubmitClick():onSubmitClick();
-  }
+    if (injuryType && service) {
+      setSubmitDisabled(false);
+      onSubmitClick();
+    } else {
+      setSubmitDisabled(true);
+      if (!injuryType) {
+        setInjuryErrors(true);
+      }
+      if (!service) {
+        setServiceErrors(true);
+      }
+    }
+  };
 
   const handleServiceChange = (e) => {
     setService(e.target.value);
@@ -60,25 +104,42 @@ const Filters = ({
   };
   return (
     <div>
-      <FormControl fullWidth className="field-selector">
+      <FormControl fullwidth className="field-selector">
+        <Typography className="filters-title">
+          <label>Select Filters:</label>
+        </Typography>
+      </FormControl>
+      <FormControl
+        fullWidth
+        className="field-selector"
+        error={serverValidationErrors.includes("care") || injuryErrors}
+      >
         <InputLabel id="demo-simple-select-label">Injury Type</InputLabel>
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
           value={injuryType}
           label="Injury Type"
+          onClick={validateInjuryChange}
           onChange={handleInjuryChange}
         >
           {renderedCareChoiceList}
         </Select>
       </FormControl>
-      <FormControl fullWidth className="field-selector">
-        <InputLabel id="demo-simple-select-error-label">Service Type</InputLabel>
+      <FormControl
+        fullWidth
+        className="field-selector"
+        error={serverValidationErrors.includes("er") || serviceErrors}
+      >
+        <InputLabel id="demo-simple-select-error-label">
+          Service Type
+        </InputLabel>
         <Select
           labelId="demo-simple-select-error-label"
           id="demo-simple-select-error"
           value={service}
           label="Service Type"
+          onClick={validateServiceChange}
           onChange={handleServiceChange}
         >
           {renderedServiceTypeList}
@@ -107,15 +168,23 @@ const Filters = ({
               defaultValue={20}
               valueLabelDisplay="auto"
               step={5}
-              getAriaValueText={(val) => setSliderValue(val)}
+              getAriaValueText={setSliderValue}
               marks={true}
               min={0}
               max={100}
-            /> Km
+            />{" "}
+            Km
           </AccordionDetails>
         </Accordion>
         <FormControl className="field-selector submit">
-        <Button variant="outlined" onClick={() => checkoutSubmit()}>Submit</Button></FormControl>
+          <Button
+            variant="outlined"
+            onClick={() => checkoutSubmit()}
+            disabled={submitDisabled}
+          >
+            Submit
+          </Button>
+        </FormControl>
       </FormControl>
     </div>
   );

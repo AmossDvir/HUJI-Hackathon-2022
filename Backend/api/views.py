@@ -31,6 +31,13 @@ def get_all_hospitals(request):
 def get_hospitals_by_parameters(request):
     if request.method == "GET":
         param = request.GET.dict()
+        invalid_selectors = []
+        if param['care'] not in CARE_DICT:
+            invalid_selectors.append('care')
+        if param['er'] not in TYPE_DICT:
+            invalid_selectors.append('er')
+        if invalid_selectors:
+            return JsonResponse({ "filters":invalid_selectors, 'message':"ValidationError"}, status=500)
         north_loc = float(param["north"])
         east_loc = float(param["east"])
         print(north_loc, east_loc)

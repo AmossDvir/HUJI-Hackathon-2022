@@ -4,7 +4,7 @@ import Filters from "./Filters";
 import Suggestions from "./Suggestions";
 import Paper from "@mui/material/Paper";
 import { styled } from "@mui/material/styles";
-import { Button, Container, Grid } from "@mui/material";
+import { Container, Grid } from "@mui/material";
 import axios from "axios";
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -19,6 +19,8 @@ const HomePage = ({ location }) => {
   const [careChoice, setCareChoice] = useState([]);
   const [careChoiceList, setCareChoiceList] = useState();
   const [careSelection, setCareSelection] = useState("");
+  const [serverValidationErrors, setServerValidationErrors] = useState([]);
+
 
   const [serviceType, setServiceType] = useState([]);
   const [serviceTypeList, setServiceTypeList] = useState();
@@ -28,7 +30,6 @@ const HomePage = ({ location }) => {
 
   const [sliderValue, setSliderValue] = useState(0);
   const resultsRef = useRef();
-
 
   const makeCareChoiceReq = async () => {
     const { data } = await axios.get("http://127.0.0.1:8000/care_choice/");
@@ -41,19 +42,23 @@ const HomePage = ({ location }) => {
   };
 
   const makeOnSubmitReq = async () => {
-    const { data } = await axios.get("http://127.0.0.1:8000/by_params/", {
-      params: {
-        radius: sliderValue,
-        care: careSelection,
-        er: serviceTypeSelection,
-        north: 351924458,
-        east: 31779513,
-        // north: location.split(",")[0],
-        // east: location.split(",")[1],
-      },
-    });
-    setSubmitData(data);
-    resultsRef.current.scrollIntoView();
+    await axios
+      .get("http://127.0.0.1:8000/by_params/", {
+        params: {
+          radius: sliderValue,
+          care: careSelection,
+          er: serviceTypeSelection,
+          north: 351924458,
+          east: 31779513,
+          // north: location.split(",")[0],
+          // east: location.split(",")[1],
+        },
+      })
+      .then(({data}) => {
+        setSubmitData(data);
+        resultsRef.current.scrollIntoView();
+      })
+      .catch((err) => setServerValidationErrors(err.response.data.filters));
   };
 
   const onSubmitClick = () => {
@@ -74,34 +79,35 @@ const HomePage = ({ location }) => {
 
   return (
     <Container maxWidth="xl">
-    <div className="main-grid">
-      <Grid className="hp-grid" container spacing={4}>
-        <Grid item xs={5}>
-          <Item className="single-item">
-            <Filters
-              careChoiceList={careChoiceList}
-              onCareSelection={setCareSelection}
-              serviceTypeList={serviceTypeList}
-              onServiceTypeSelection={setServiceTypeSelection}
-              setSliderValue={setSliderValue}
-              sliderValue={sliderValue}
-              onSubmitClick={onSubmitClick}
-            ></Filters>
-            
-          </Item>
+      <div className="main-grid">
+        <Grid className="hp-grid" container spacing={4}>
+          <Grid item xs={5}>
+            <Item className="single-item">
+              <Filters
+                careChoiceList={careChoiceList}
+                onCareSelection={setCareSelection}
+                serviceTypeList={serviceTypeList}
+                onServiceTypeSelection={setServiceTypeSelection}
+                setSliderValue={setSliderValue}
+                sliderValue={sliderValue}
+                onSubmitClick={onSubmitClick}
+                serverValidationErrors={serverValidationErrors}
+                setServerValidationErrors={setServerValidationErrors}
+              ></Filters>
+            </Item>
+          </Grid>
+          <Grid item xs={7}>
+            <Item className="single-item">
+              <Map location={location}></Map>
+            </Item>
+          </Grid>
+          <Grid item xs={12}>
+            <Item ref={resultsRef} className="single-item">
+              <Suggestions data={submitData}></Suggestions>
+            </Item>
+          </Grid>
         </Grid>
-        <Grid item xs={7}>
-          <Item className="single-item">
-            <Map location={location}></Map>
-          </Item>
-        </Grid>
-        <Grid item xs={12}>
-          <Item ref={resultsRef} className="single-item">
-            <Suggestions data={submitData}></Suggestions>
-          </Item>
-        </Grid>
-      </Grid>
-    </div>
+      </div>
     </Container>
   );
 };

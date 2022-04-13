@@ -6,7 +6,7 @@ const Map = ({ location }) => {
       <iframe
         width="100%"
         height="450px"
-        style={{ border: 0 }}
+        style={{ border: "1px solid #c2c2c2" }}
         loading="lazy"
         allowFullScreen
         referrerPolicy="no-referrer-when-downgrade"
