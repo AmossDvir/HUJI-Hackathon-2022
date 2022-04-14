@@ -31,12 +31,12 @@ class Hospital(models.Model):
 
 
     # our variables:
-    name = models.CharField(max_length=30)
-    phone = models.CharField(max_length=12, unique=True)
-    north_loc = models.SmallIntegerField()
-    east_loc = models.SmallIntegerField()
-    district = models.PositiveSmallIntegerField(choices=DISTRICTS.choices, default=DISTRICTS.JERUSALEM)
-    min_till_doctor = models.SmallIntegerField()
+    name = models.CharField(max_length=40)
+    phone = models.CharField(max_length=12)
+    north_loc = models.IntegerField()
+    east_loc = models.IntegerField()
+    district = models.IntegerField(choices=DISTRICTS.choices, default=DISTRICTS.JERUSALEM)
+    min_till_doctor = models.IntegerField()
     is_private = models.BooleanField()
     er_type = models.PositiveSmallIntegerField(choices=ER_TYPE.choices, default=ER_TYPE.ALL)
     care_fields = MultiSelectField(choices=CARE_CHOICES.choices, default=CARE_CHOICES.ALL)
