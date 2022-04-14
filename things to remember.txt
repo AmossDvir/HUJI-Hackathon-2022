@@ -14,3 +14,5 @@ pip install -r requirements.txt
 
 to install virtual environmentL
 python -m venv ./venv/
+
+DB URL: postgres://vbtbdphkzucuiv:263160f58a555a2564c0a5283e22b2c4886c7d9c6037d75d963c75e38ad688b7@ec2-52-3-200-138.compute-1.amazonaws.com:5432/d3egqafbbtkhji
