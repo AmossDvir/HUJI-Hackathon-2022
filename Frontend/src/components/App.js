@@ -13,7 +13,7 @@ const App = () => {
   const [emergencyClicked, setEmergencyClicked] = useState(false);
   const [location, setLocation] = useLocation(defLoc, emergencyClicked);
   const [emergencyLoc, setEmergencyLoc] = useState("");
-  const [isTopButtonVisible, setIsTopButtonVisible] = useState(true);
+  const [isTopButtonVisible, setIsTopButtonVisible] = useState(false);
   const topElementRef = useRef();
 
   const makeEmerReq = async () => {
